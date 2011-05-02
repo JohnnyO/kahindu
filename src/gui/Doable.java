@@ -1,1 +1,4 @@
-package gui;interface Doable {	public void doit(double a[]);}
+package gui;
+interface Doable {
+	public void doit(double a[]);
+}
