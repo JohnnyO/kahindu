@@ -11,6 +11,7 @@ package dclap;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
+import java.text.AttributedCharacterIterator;
 import java.util.*;
 
 /**
@@ -38,9 +39,7 @@ public class Gr2PICT extends java.awt.Graphics {
 	Rectangle r = new Rectangle();
 	return r;
 }
-// ATTENTION, TO COMPILE UNDER JDK 1.2, UNCOMMENT
-// THE FOLLOWING:
-//void drawString(java.text.AttributedCharacterIterator aa, int a, int b) {};
+public void drawString(java.text.AttributedCharacterIterator aa, int a, int b) {};
 
 public void setClip(int a, int b, int c, int d)
 	{return;}
@@ -984,6 +983,8 @@ public boolean drawImage(Image i, int a, int b, int c, int d, int e, int f, int 
   public boolean checkError() {
     return trouble;
     }
+
+
 
 }
 

@@ -1,3 +1,5 @@
+package gui;
+
 
 // How to generate random numbers
 class Random {
