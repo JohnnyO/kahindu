@@ -1,0 +1,6 @@
+.classpath
+.codepro/
+.project
+.settings/
+bin/
+*.class
