@@ -21,6 +21,11 @@
     <target name="clean" description="removes all generated files">
         <delete dir="${build.dir}" />
     </target>
+	
+	<target name="run" depends="compile">
+		<java classname="Main" classpath="${build.dir}" />
+		
+	</target>
     
     
     
