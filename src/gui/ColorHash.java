@@ -81,7 +81,6 @@ public class ColorHash extends Hashtable {
         // sort the colors here!
         Vector vb = new Vector();
         Vector v = ch.makeVector();
-        Collections.sort(v);
         Sort.sort(v, vb, 0, v.size(), true);
 
         for (int i =0; i < v.size(); i++) {

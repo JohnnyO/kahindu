@@ -816,8 +816,8 @@ public void medianCross3x3() {
   }
   
 public static short median(Vector v) {
-	Collections.sort(v);
-     return 
+   Sort.sort(v,new Vector(),0, v.size(), true);
+   return 
     	 ((Cshort)v.elementAt(v.size()/2)).getValue();   	
 }
 
