@@ -32,8 +32,8 @@ public class Main extends Applet {
 /**
 	@args - unprocessed
 */
-	static String title[] = 
-		{"v2.7 Kahindu by Douglas Lyon"};
+	private static final  String title[] = {"v2.7 Kahindu by Douglas Lyon"};
+	
 	public void init() {
 	 	TopFrame.main(title);
 	 
