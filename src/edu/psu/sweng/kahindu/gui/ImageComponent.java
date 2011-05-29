@@ -33,6 +33,10 @@ public class ImageComponent extends JComponent {
 		this.image = image;
 		this.repaint();
 	}
+	
+	public KahinduImage getImage() {
+		return image;
+	}
 
 	@Override
 	public Dimension getPreferredSize() {

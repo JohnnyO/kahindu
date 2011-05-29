@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 
 import edu.psu.sweng.kahindu.gui.ImageFrame;
 import edu.psu.sweng.kahindu.image.AWTImageAdapter;
@@ -19,6 +20,7 @@ public class Main {
 		KahinduImage kImage = new AWTImageAdapter(bufferedImage);
 		
 		ImageFrame iFrame = new ImageFrame(kImage);
+		iFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		iFrame.setVisible(true);
 		
 		
