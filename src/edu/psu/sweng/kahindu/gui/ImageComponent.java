@@ -2,11 +2,8 @@ package edu.psu.sweng.kahindu.gui;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.image.ImageConsumer;
-import java.awt.image.ImageProducer;
 
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
