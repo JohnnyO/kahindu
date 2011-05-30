@@ -2,6 +2,12 @@ package edu.psu.sweng.kahindu.gui;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.image.ImageConsumer;
+import java.awt.image.ImageProducer;
+import java.awt.image.MemoryImageSource;
 
 import javax.swing.JComponent;
 
@@ -10,27 +16,35 @@ import edu.psu.sweng.kahindu.image.KahinduImage;
 public class ImageComponent extends JComponent {
 
 	private KahinduImage image;
+	private Image displayableImage;
 
 	public ImageComponent(final KahinduImage image) {
-		this.image = image;
+		this.updateImage(image);
 	}
 
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		for (int x = 0; x < image.getHeight(); x++) {
-			for (int y = 0; y < image.getWidth(); y++) {
-				g.setColor(image.getColor(x, y));
-				g.drawRect(x, y, 1, 1);
-			}
-		}
+		Rectangle r = getBounds();
+		g.drawImage(displayableImage, 0, 0, r.width, r.height, this);
 	}
-	
+
 	public void updateImage(KahinduImage image) {
 		this.image = image;
+		int height = image.getHeight();
+		int width =  image.getWidth();
+		int[] pixels = new int[width * height];
+		for (int x = 0; x < width; x++)
+			for (int y = 0; y < height; y++) {
+				pixels[x  + y*width] = image.getColor(x, y).getRGB();
+			}
+		MemoryImageSource source = new MemoryImageSource(image.getWidth(), image.getHeight(), pixels, 0,
+				image.getWidth());
+		displayableImage = Toolkit.getDefaultToolkit().createImage(source);
+		
 		this.repaint();
 	}
-	
+
 	public KahinduImage getImage() {
 		return image;
 	}

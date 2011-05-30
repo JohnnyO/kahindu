@@ -10,13 +10,12 @@ import javax.swing.JFrame;
 import edu.psu.sweng.kahindu.gui.ImageFrame;
 import edu.psu.sweng.kahindu.image.AWTImageAdapter;
 import edu.psu.sweng.kahindu.image.KahinduImage;
+import edu.psu.sweng.kahindu.image.io.GIFReader;
 
 public class Main {
 	public static void main(String [] args) throws IOException {
-		BufferedImage bufferedImage = ImageIO.read(new File("gifs/baboon.GIF"));
-		KahinduImage kImage = new AWTImageAdapter(bufferedImage);
 		
-		ImageFrame iFrame = new ImageFrame(kImage);
+		ImageFrame iFrame = new ImageFrame();
 		iFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		iFrame.setVisible(true);
 		
