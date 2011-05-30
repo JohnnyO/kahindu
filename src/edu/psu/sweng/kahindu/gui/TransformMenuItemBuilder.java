@@ -15,7 +15,7 @@ import edu.psu.sweng.kahindu.transform.Transformer;
 public class TransformMenuItemBuilder extends AbstractMenuItemBuilder {
 
 	private Transformer<Color> transformer;
-	public ImageComponent target;
+	private ImageComponent target;
 	
 	public TransformMenuItemBuilder(Transformer<Color> t, ImageComponent target) {
 		this.setTransform(t);

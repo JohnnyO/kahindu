@@ -56,6 +56,10 @@ public class ImageFrame extends JFrame {
 	{
 	    JMenuBuilder builder = new JMenuBuilder("File");
 	    
+	    OpenMenuItemBuilder loadGIF = new OpenMenuItemBuilder(new GIFReader(), component);
+	    loadGIF.setName("Load GIF");
+	    builder.addMenuItemBuilder(loadGIF);
+	    
 	    return builder.getMenu();
 	}
 	
