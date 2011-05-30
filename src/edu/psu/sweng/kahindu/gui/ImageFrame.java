@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
 
@@ -43,33 +44,46 @@ public class ImageFrame extends JFrame {
 		this.pack();
 	}
 
-	private JMenuBar getMenu() {
-
-		JMenuBuilder builder = new JMenuBuilder("Transforms");
-
-		TransformMenuItemBuilder negate = new TransformMenuItemBuilder(new NegateTransformer(), component);
-		negate.setName("Negate").setShortcutKey(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
-		builder.addMenuItemBuilder(negate);
-
-		TransformMenuItemBuilder gray = new TransformMenuItemBuilder(new GrayTransformer(), component);
-		gray.setName("Gray");
-		builder.addMenuItemBuilder(gray);
-
-		TransformMenuItemBuilder add10 = new TransformMenuItemBuilder(new AdditiveTransformer(10), component);
-		add10.setName("Add 10");
-		builder.addMenuItemBuilder(add10);
-
-		TransformMenuItemBuilder brighten = new TransformMenuItemBuilder(new PowerTransformer(0.9), component);
-		brighten.setName("Brighten");
-		builder.addMenuItemBuilder(brighten);
-
-		TransformMenuItemBuilder darken = new TransformMenuItemBuilder(new PowerTransformer(1.5), component);
-		darken.setName("Darken");
-		builder.addMenuItemBuilder(darken);
-
+	private JMenuBar getMenu()
+	{
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.add(builder.getMenu());
+		menuBar.add(getFileMenu());
+		menuBar.add(getFilterMenu());
 		return menuBar;
+	}
+	
+	private JMenu getFileMenu()
+	{
+	    JMenuBuilder builder = new JMenuBuilder("File");
+	    
+	    return builder.getMenu();
+	}
+	
+	private JMenu getFilterMenu()
+	{
+	    JMenuBuilder builder = new JMenuBuilder("Filters");
+
+        TransformMenuItemBuilder negate = new TransformMenuItemBuilder(new NegateTransformer(), component);
+        negate.setName("Negate").setShortcutKey(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
+        builder.addMenuItemBuilder(negate);
+
+        TransformMenuItemBuilder gray = new TransformMenuItemBuilder(new GrayTransformer(), component);
+        gray.setName("Gray");
+        builder.addMenuItemBuilder(gray);
+
+        TransformMenuItemBuilder add10 = new TransformMenuItemBuilder(new AdditiveTransformer(10), component);
+        add10.setName("Add 10");
+        builder.addMenuItemBuilder(add10);
+
+        TransformMenuItemBuilder brighten = new TransformMenuItemBuilder(new PowerTransformer(0.9), component);
+        brighten.setName("Brighten");
+        builder.addMenuItemBuilder(brighten);
+
+        TransformMenuItemBuilder darken = new TransformMenuItemBuilder(new PowerTransformer(1.5), component);
+        darken.setName("Darken");
+        builder.addMenuItemBuilder(darken);
+        
+        return builder.getMenu();
 	}
 
 }
