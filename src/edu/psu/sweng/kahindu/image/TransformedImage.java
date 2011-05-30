@@ -2,7 +2,7 @@ package edu.psu.sweng.kahindu.image;
 
 import java.awt.Color;
 
-import edu.psu.sweng.kahindu.io.Transformer;
+import edu.psu.sweng.kahindu.transform.Transformer;
 
 public class TransformedImage implements KahinduImage {
 	

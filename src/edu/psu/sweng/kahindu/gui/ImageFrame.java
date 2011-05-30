@@ -1,16 +1,22 @@
 package edu.psu.sweng.kahindu.gui;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.io.AdditiveTransformer;
-import edu.psu.sweng.kahindu.io.GrayTransformer;
-import edu.psu.sweng.kahindu.io.NegateTransformer;
-import edu.psu.sweng.kahindu.io.PowerTransformer;
+import edu.psu.sweng.kahindu.image.io.ByteArrayImageAdapter;
+import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
+import edu.psu.sweng.kahindu.image.io.GIFReader;
+import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
+import edu.psu.sweng.kahindu.transform.GrayTransformer;
+import edu.psu.sweng.kahindu.transform.NegateTransformer;
+import edu.psu.sweng.kahindu.transform.PowerTransformer;
+import gui.NumImage;
 
 public class ImageFrame extends JFrame {
 
@@ -19,8 +25,17 @@ public class ImageFrame extends JFrame {
 
 	private KahinduImage image;
 
-	public ImageFrame(final KahinduImage image) {
+	public ImageFrame() {
 		super("Kahindu Refactor - Team 2");
+		File defaultImage = new File("gifs/baboon.GIF");
+		try {
+			this.image = new ByteArrayImageReader(NumImage.gray).read();
+			//this.image = new GIFReader(new File("gifs/baboon.GIF")).read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		
 		this.image = image;
 		this.component = new ImageComponent(image);
 		this.getContentPane().add(component);

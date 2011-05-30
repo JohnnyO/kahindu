@@ -1,4 +1,4 @@
-package edu.psu.sweng.kahindu.io;
+package edu.psu.sweng.kahindu.transform;
 
 public interface Transformer<T> {
 	
