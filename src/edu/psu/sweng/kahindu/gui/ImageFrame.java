@@ -1,22 +1,28 @@
 package edu.psu.sweng.kahindu.gui;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
+import edu.psu.sweng.kahindu.image.TransformedImage;
 import edu.psu.sweng.kahindu.image.io.ByteArrayImageAdapter;
 import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.GIFReader;
+import edu.psu.sweng.kahindu.matrix.Matrix;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
+import edu.psu.sweng.kahindu.transform.SpatialTransformedImage;
 import gui.NumImage;
 
 public class ImageFrame extends JFrame {
@@ -49,9 +55,29 @@ public class ImageFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(getFileMenu());
 		menuBar.add(getFilterMenu());
+		menuBar.add(getSpatialFilterMenu());
+		
 		return menuBar;
 	}
 	
+	private JMenu getSpatialFilterMenu() {
+		JMenuItem item = new JMenuItem(new AbstractAction("LowPass - Average") {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				KahinduImage source = component.getImage();
+				Matrix matrix = new Matrix(3,3);
+				KahinduImage result = new SpatialTransformedImage(source, matrix);
+				component.updateImage(result);
+
+			}
+			
+		});
+		JMenu menu = new JMenu("Spatial");
+		menu.add(item);
+		return menu;
+	}
+
 	private JMenu getFileMenu()
 	{
 	    JMenuBuilder builder = new JMenuBuilder("File");
