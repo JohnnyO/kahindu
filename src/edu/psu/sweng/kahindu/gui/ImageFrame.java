@@ -13,8 +13,6 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.TransformedImage;
-import edu.psu.sweng.kahindu.image.io.ByteArrayImageAdapter;
 import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.GIFReader;
 import edu.psu.sweng.kahindu.matrix.Matrix;
@@ -25,9 +23,10 @@ import edu.psu.sweng.kahindu.transform.PowerTransformer;
 import edu.psu.sweng.kahindu.transform.SpatialTransformedImage;
 import gui.NumImage;
 
-public class ImageFrame extends JFrame {
-
-	private final JFrame frame = new JFrame("Kahindu Refactor - Team 2");
+public class ImageFrame extends JFrame
+{
+    private static final long serialVersionUID = 3848669250991405715L;
+    
 	private final ImageComponent component;
 
 	private KahinduImage image;
@@ -43,7 +42,7 @@ public class ImageFrame extends JFrame {
 		}
 
 		
-		this.image = image;
+//		this.image = image;
 		this.component = new ImageComponent(image);
 		this.getContentPane().add(component);
 		this.setJMenuBar(this.getMenu());
@@ -63,7 +62,9 @@ public class ImageFrame extends JFrame {
 	private JMenu getSpatialFilterMenu() {
 		JMenuItem item = new JMenuItem(new AbstractAction("LowPass - Average") {
 
-			@Override
+            private static final long serialVersionUID = 1139557320916901550L;
+
+            @Override
 			public void actionPerformed(ActionEvent e) {
 				KahinduImage source = component.getImage();
 				Matrix matrix = new Matrix(3,3);
