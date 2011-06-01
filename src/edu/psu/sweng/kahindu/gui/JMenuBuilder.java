@@ -15,7 +15,7 @@ public class JMenuBuilder {
 		builders = new LinkedList<JMenuItemBuilder>();
 	}
 	
-	public void addMenuItemBuilder(JMenuItemBuilder jmiBuilder) {
+	public void addMenuItem(JMenuItemBuilder jmiBuilder) {
 		builders.add(jmiBuilder);
 	}
 	

@@ -50,8 +50,8 @@ public class OpenMenuItemBuilder extends AbstractMenuItemBuilder
                     // reader.setFile(new File("gifs/baboon.gif"));
                     if (file != null)
                     {
-                        reader.setFile(file);
-                        KahinduImage result = reader.read();
+                        //reader.setFile(file);
+                        KahinduImage result = reader.read(file);
                         target.updateImage(result);
                     }
                 }

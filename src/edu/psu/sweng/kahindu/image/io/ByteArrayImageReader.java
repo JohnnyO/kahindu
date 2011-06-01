@@ -14,13 +14,13 @@ public class ByteArrayImageReader implements ImageReader{
 	}
 
 	@Override
-	public KahinduImage read() throws IOException {
+	public KahinduImage read(File file) throws IOException {
 		return new ByteArrayImageAdapter(data);
 	}
 
-	@Override
-	public void setFile(File file) {
-		// TODO This is a problem		
-	}
+//	@Override
+//	public void setFile(File file) {
+//		// TODO This is a problem		
+//	}
 
 }

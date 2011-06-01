@@ -15,6 +15,7 @@ import javax.swing.KeyStroke;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.GIFReader;
+import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.matrix.Matrix;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
@@ -35,7 +36,7 @@ public class ImageFrame extends JFrame
 		super("Kahindu Refactor - Team 2");
 		File defaultImage = new File("gifs/baboon.GIF");
 		try {
-			this.image = new ByteArrayImageReader(NumImage.gray).read();
+			this.image = new ByteArrayImageReader(NumImage.gray).read(defaultImage);
 			//this.image = new GIFReader(new File("gifs/baboon.GIF")).read();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -81,13 +82,28 @@ public class ImageFrame extends JFrame
 
 	private JMenu getFileMenu()
 	{
-	    JMenuBuilder builder = new JMenuBuilder("File");
+	    JMenu fileMenu = new JMenu("File");
+
+	    // Open
+	    JMenuBuilder openBuilder = new JMenuBuilder("Open");
 	    
 	    OpenMenuItemBuilder loadGIF = new OpenMenuItemBuilder(new GIFReader(), component);
 	    loadGIF.setName("Load GIF");
-	    builder.addMenuItemBuilder(loadGIF);
+	    openBuilder.addMenuItem(loadGIF);
 	    
-	    return builder.getMenu();
+	    OpenMenuItemBuilder loadPPM = new OpenMenuItemBuilder(new PPMReader(), component);
+        loadPPM.setName("Load PPM");
+        openBuilder.addMenuItem(loadPPM);
+	    
+	    // Save
+//	    JMenuBuilder saveBuilder = new JMenuBuilder("Save");
+//        OpenMenuItemBuilder loadGIF = new OpenMenuItemBuilder(new GIFReader(), component);
+//        loadGIF.setName("Load GIF");
+//        openBuilder.addMenuItem(loadGIF);
+        
+        fileMenu.add(openBuilder.getMenu());
+	    
+	    return fileMenu;
 	}
 	
 	private JMenu getFilterMenu()
@@ -96,23 +112,23 @@ public class ImageFrame extends JFrame
 
         TransformMenuItemBuilder negate = new TransformMenuItemBuilder(new NegateTransformer(), component);
         negate.setName("Negate").setShortcutKey(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
-        builder.addMenuItemBuilder(negate);
+        builder.addMenuItem(negate);
 
         TransformMenuItemBuilder gray = new TransformMenuItemBuilder(new GrayTransformer(), component);
         gray.setName("Gray");
-        builder.addMenuItemBuilder(gray);
+        builder.addMenuItem(gray);
 
         TransformMenuItemBuilder add10 = new TransformMenuItemBuilder(new AdditiveTransformer(10), component);
         add10.setName("Add 10");
-        builder.addMenuItemBuilder(add10);
+        builder.addMenuItem(add10);
 
         TransformMenuItemBuilder brighten = new TransformMenuItemBuilder(new PowerTransformer(0.9), component);
         brighten.setName("Brighten");
-        builder.addMenuItemBuilder(brighten);
+        builder.addMenuItem(brighten);
 
         TransformMenuItemBuilder darken = new TransformMenuItemBuilder(new PowerTransformer(1.5), component);
         darken.setName("Darken");
-        builder.addMenuItemBuilder(darken);
+        builder.addMenuItem(darken);
         
         return builder.getMenu();
 	}
