@@ -18,15 +18,6 @@ public class GIFReader implements ImageReader
 	{
 	}
 	
-//	public void setFile(File filename)
-//	{
-//		assert(filename != null);
-//		assert(filename.getAbsolutePath().toLowerCase().endsWith(".gif"));
-//		
-//		this.filename = filename;
-//	}
-	
-
 	@Override
 	public KahinduImage read(File file) throws IOException
 	{

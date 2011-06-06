@@ -3,7 +3,6 @@
  */
 package edu.psu.sweng.kahindu.image.io;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.io.EOFException;
 import java.io.File;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
+import edu.psu.sweng.kahindu.image.RawImageAdapter;
 
 public class PPMReader implements ImageReader
 {
@@ -69,28 +69,30 @@ public class PPMReader implements ImageReader
             e.printStackTrace();
         }
         
-        return new KahinduImage()
-        {
-
-            @Override
-            public int getWidth()
-            {
-                return d.width;
-            }
-
-            @Override
-            public int getHeight()
-            {
-                return d.height;
-            }
-
-            @Override
-            public Color getColor(int x, int y)
-            {
-                return new Color(r[x][y], g[x][y], b[x][y]);
-            }
-
-        };
+        return new RawImageAdapter(d.width, d.height, r, g, b);
+        
+//        return new KahinduImage()
+//        {
+//
+//            @Override
+//            public int getWidth()
+//            {
+//                return d.width;
+//            }
+//
+//            @Override
+//            public int getHeight()
+//            {
+//                return d.height;
+//            }
+//
+//            @Override
+//            public Color getColor(int x, int y)
+//            {
+//                return new Color(r[x][y], g[x][y], b[x][y]);
+//            }
+//
+//        };
     }
 
     private Dimension readHeaderInfo(InputStream in) throws IOException
