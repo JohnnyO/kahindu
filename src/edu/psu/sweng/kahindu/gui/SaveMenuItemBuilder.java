@@ -2,26 +2,25 @@ package edu.psu.sweng.kahindu.gui;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JMenuItem;
 
-import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.io.ImageReader;
+import edu.psu.sweng.kahindu.image.io.ImageWriter;
 
-public class OpenMenuItemBuilder extends AbstractMenuItemBuilder
+public class SaveMenuItemBuilder extends AbstractMenuItemBuilder
 {
-    private final ImageReader reader;
+    private final ImageWriter writer;
     private final ImageComponent target;
 
     /*
+     * GIF Writer
      */
 
-    public OpenMenuItemBuilder(ImageReader reader, ImageComponent target)
+    public SaveMenuItemBuilder(ImageWriter writer, ImageComponent target)
     {
-        this.reader = reader;
+        this.writer = writer;
         this.target = target;
     }
 
@@ -31,11 +30,11 @@ public class OpenMenuItemBuilder extends AbstractMenuItemBuilder
         Action a = new AbstractAction(this.name)
         {
 
-            private static final long serialVersionUID = 7157033217054676920L;
+            private static final long serialVersionUID = 912556045328608649L;
 
             {
                 this.putValue(ACCELERATOR_KEY,
-                        OpenMenuItemBuilder.this.shortcutKey);
+                        SaveMenuItemBuilder.this.shortcutKey);
             }
 
             @Override
@@ -43,14 +42,13 @@ public class OpenMenuItemBuilder extends AbstractMenuItemBuilder
             {
                 try
                 {
-                    File file = openFileDialog(target);
+                    File file = saveFileDialog(target);
                     if (file != null)
                     {
-                        KahinduImage result = reader.read(file);
-                        target.updateImage(result);
+                        writer.write(target.getImage(), file);
                     }
                 }
-                catch (IOException ioe)
+                catch (Exception ioe)
                 {
                     ioe.printStackTrace();
                 }

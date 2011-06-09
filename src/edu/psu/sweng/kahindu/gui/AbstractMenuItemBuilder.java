@@ -24,12 +24,20 @@ public abstract class AbstractMenuItemBuilder extends JMenuItemBuilder {
 		return this;
 	}
 	
-	protected File getFileFromChooser(ImageComponent component)
+	protected File openFileDialog(ImageComponent component)
 	{
 	    JFileChooser fc = new JFileChooser();
 	    fc.setCurrentDirectory(new File(IMAGE_DIRECTORY_NAME));
         fc.showOpenDialog(component);
         return fc.getSelectedFile();
 	}
-
+	
+	protected File saveFileDialog(ImageComponent component)
+    {
+        JFileChooser fc = new JFileChooser();
+        fc.setCurrentDirectory(new File(IMAGE_DIRECTORY_NAME));
+        fc.showSaveDialog(component);
+        return fc.getSelectedFile();
+    }
+	
 }

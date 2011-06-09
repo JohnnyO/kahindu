@@ -15,6 +15,7 @@ import javax.swing.KeyStroke;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.GIFReader;
+import edu.psu.sweng.kahindu.image.io.GIFWriter;
 import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.matrix.Matrix;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
@@ -101,7 +102,13 @@ public class ImageFrame extends JFrame
 //        loadGIF.setName("Load GIF");
 //        openBuilder.addMenuItem(loadGIF);
         
+        JMenuBuilder saveBuilder = new JMenuBuilder("Save");
+        SaveMenuItemBuilder saveGIF = new SaveMenuItemBuilder(new GIFWriter(), component);
+        saveGIF.setName("Save GIF");
+        saveBuilder.addMenuItem(saveGIF);
+        
         fileMenu.add(openBuilder.getMenu());
+        fileMenu.add(saveBuilder.getMenu());
 	    
 	    return fileMenu;
 	}

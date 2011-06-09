@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.image.ImageConsumer;
-import java.awt.image.ImageProducer;
 import java.awt.image.MemoryImageSource;
 
 import javax.swing.JComponent;
@@ -15,7 +13,9 @@ import edu.psu.sweng.kahindu.image.KahinduImage;
 
 public class ImageComponent extends JComponent {
 
-	private KahinduImage image;
+    private static final long serialVersionUID = 4104984066672879312L;
+    
+    private KahinduImage image;
 	private Image displayableImage;
 
 	public ImageComponent(final KahinduImage image) {
@@ -48,7 +48,7 @@ public class ImageComponent extends JComponent {
 	public KahinduImage getImage() {
 		return image;
 	}
-
+	
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(image.getWidth(), image.getHeight());
