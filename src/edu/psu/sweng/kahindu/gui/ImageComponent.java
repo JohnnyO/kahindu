@@ -9,6 +9,7 @@ import java.awt.image.MemoryImageSource;
 
 import javax.swing.JComponent;
 
+import edu.psu.sweng.kahindu.image.AWTImageAdapter;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
 public class ImageComponent extends JComponent {
@@ -38,8 +39,10 @@ public class ImageComponent extends JComponent {
 			for (int y = 0; y < height; y++) {
 				pixels[x  + y*width] = image.getColor(x, y).getRGB();
 			}
+		
 		MemoryImageSource source = new MemoryImageSource(image.getWidth(), image.getHeight(), pixels, 0,
 				image.getWidth());
+		
 		displayableImage = Toolkit.getDefaultToolkit().createImage(source);
 		
 		this.repaint();

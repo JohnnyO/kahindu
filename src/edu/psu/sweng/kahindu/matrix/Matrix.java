@@ -48,4 +48,15 @@ public class Matrix {
 		
 	}
 
+	public void setValueAt(int x, int y, float center) {
+		 data[x + y*width] = center;
+	}
+
+	public float sum() {
+		float sum = 0;
+		for (float x : data)
+			sum +=x;
+		return sum;
+	}
+
 }

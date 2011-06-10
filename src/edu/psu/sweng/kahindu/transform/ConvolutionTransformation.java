@@ -55,6 +55,13 @@ public abstract class ConvolutionTransformation implements Transformer<KahinduIm
 
 		@Override
 		public Color getColor(int x, int y) {
+			
+			//Why would we do this?  It's clearly wrong...
+			//That's true, but we are preserving backwards compatibility with the old code
+			//(The old code had an off-by-one error which creating black bars on the last row of pixels in each dimension
+			if (x == source.getWidth() - 1) return Color.BLACK;
+			if (y == source.getHeight() - 1) return Color.BLACK;
+			
 			int uc = kernel.getWidth() / 2;
 			int vc = kernel.getHeight() / 2;
 

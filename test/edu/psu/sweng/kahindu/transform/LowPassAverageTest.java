@@ -8,14 +8,15 @@ public class LowPassAverageTest extends CharacterizationTest {
 
 	@Override
 	public TopFrame constructLegacyImage(TopFrame topFrame) {
-		topFrame.average();
+		topFrame.lp3();
 		return topFrame;
 	}
 
 	@Override
 	public KahinduImage constructRefactoredImage(KahinduImage img) {
-		LowPassAverage t = new LowPassAverage();
+		LowPassAverage t = new LowPassAverage(12);
 		return t.transform(img);
 	}
+	
 
 }
