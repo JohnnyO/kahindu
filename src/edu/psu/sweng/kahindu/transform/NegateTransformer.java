@@ -2,6 +2,11 @@ package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
 
+/**
+ * Creates a photo-negative representation of an image.
+ * @author John
+ *
+ */
 public class NegateTransformer extends LinearTransformation{
 
 	

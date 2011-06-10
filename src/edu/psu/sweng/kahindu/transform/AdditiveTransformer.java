@@ -2,9 +2,21 @@ package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
 
+/**
+ * Adds a fixed offset to each of the component colors in an image.
+ * 
+ * @author John
+ * 
+ */
 public class AdditiveTransformer extends LinearTransformation {
 	private final int offset;
 
+	/**
+	 * The offset is added to each of the color components (R,G,B) of an image,
+	 * resulting in a brighter image. (or darker if the offset is negative)
+	 * 
+	 * @param offset
+	 */
 	public AdditiveTransformer(int offset) {
 		this.offset = offset;
 	}

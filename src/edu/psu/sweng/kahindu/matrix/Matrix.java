@@ -1,7 +1,10 @@
 package edu.psu.sweng.kahindu.matrix;
 
-import java.util.Arrays;
-
+/**
+ * This simple ADT is used to to support floating point matrix operations.
+ * @author John
+ *
+ */
 public class Matrix {
 	
 	private final int width;

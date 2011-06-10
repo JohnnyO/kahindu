@@ -2,6 +2,11 @@ package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
 
+/**
+ * Converts a color image to its grayscale representation.
+ * @author John
+ *
+ */
 public class GrayTransformer extends LinearTransformation {
 
 

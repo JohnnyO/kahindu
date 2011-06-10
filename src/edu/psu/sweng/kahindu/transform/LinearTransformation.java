@@ -3,9 +3,18 @@ package edu.psu.sweng.kahindu.transform;
 import java.awt.Color;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-
+/**
+ * Generates a linear transformation of an image.  A linear transformation is a transformation that converts each pixel
+ * of the image individually, without regard to neighboring pixels.
+ * @author John
+ *
+ */
 public abstract class LinearTransformation implements Transformer<KahinduImage> {
 
+	/**
+	 * Implemented by subclasses to define how the linear transformation is to take place.
+	 * @return
+	 */
 	public abstract Transformer<Color> getColorTransform();
 
 	public KahinduImage transform(final KahinduImage source) {
