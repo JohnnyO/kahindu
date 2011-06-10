@@ -1,17 +1,19 @@
 package edu.psu.sweng.kahindu.matrix;
 
+import java.util.Arrays;
+
 public class Matrix {
 	
 	private final int width;
 	private final int height;
-	private final double data [];
+	private final float data [];
 
+	
 	public Matrix(int width, int height) {
-		this(width, height, new double[width*height]);
-		
+		this(width, height, new float[width*height]);
 	}
 
-	public Matrix(int width, int height, double[] data) {
+	public Matrix(int width, int height, float[] data) {
 		assert(data.length == width * height);
 		this.width = width;
 		this.height = height;
@@ -26,9 +28,21 @@ public class Matrix {
 		return width;
 	}
 
-	public double getValue(int x, int y) {
-		//TODO:  Hardcoded test of the average case.
-		return 1.0/9.0;
+	public float getValue(int x, int y) {
+		return data[x + y*width];
+	}
+	
+	public void scale(float scale) {
+		for (int i=0; i < data.length; i++) {
+			data[i] = data[i] * scale;
+		}
+	}
+
+	public void fill(int value) {
+		for (int i=0; i < data.length; i++) {
+			data[i] = value;
+		}
+		
 	}
 
 }

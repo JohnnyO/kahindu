@@ -20,9 +20,10 @@ import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.matrix.Matrix;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
+import edu.psu.sweng.kahindu.transform.LowPassAverage;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
-import edu.psu.sweng.kahindu.transform.SpatialTransformedImage;
+import edu.psu.sweng.kahindu.transform.ConvolutionTransformation;
 import gui.NumImage;
 
 public class ImageFrame extends JFrame
@@ -62,23 +63,12 @@ public class ImageFrame extends JFrame
 	}
 	
 	private JMenu getSpatialFilterMenu() {
-		JMenuItem item = new JMenuItem(new AbstractAction("LowPass - Average") {
+		JMenuBuilder builder = new JMenuBuilder("Spatial");
+        TransformMenuItemBuilder lowPass = new TransformMenuItemBuilder(new LowPassAverage(), component);
+        lowPass.setName("LowPass-Average");
+        builder.addMenuItem(lowPass);
 
-            private static final long serialVersionUID = 1139557320916901550L;
-
-            @Override
-			public void actionPerformed(ActionEvent e) {
-				KahinduImage source = component.getImage();
-				Matrix matrix = new Matrix(3,3);
-				KahinduImage result = new SpatialTransformedImage(source, matrix);
-				component.updateImage(result);
-
-			}
-			
-		});
-		JMenu menu = new JMenu("Spatial");
-		menu.add(item);
-		return menu;
+		return builder.getMenu();
 	}
 
 	private JMenu getFileMenu()
