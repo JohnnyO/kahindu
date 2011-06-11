@@ -1,30 +1,24 @@
 package edu.psu.sweng.kahindu.gui;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
-import edu.psu.sweng.kahindu.image.io.GIFReader;
-import edu.psu.sweng.kahindu.image.io.GIFWriter;
+import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
+import edu.psu.sweng.kahindu.image.io.DefaultImageWriter;
 import edu.psu.sweng.kahindu.image.io.PPMReader;
-import edu.psu.sweng.kahindu.matrix.Matrix;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
 import edu.psu.sweng.kahindu.transform.LowPassFilter;
-import edu.psu.sweng.kahindu.transform.MedianFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
-import edu.psu.sweng.kahindu.transform.ConvolutionTransformation;
 import gui.NumImage;
 
 public class ImageFrame extends JFrame
@@ -45,8 +39,6 @@ public class ImageFrame extends JFrame
 			e.printStackTrace();
 		}
 
-		
-//		this.image = image;
 		this.component = new ImageComponent(image);
 		this.getContentPane().add(component);
 		this.setJMenuBar(this.getMenu());
@@ -101,24 +93,35 @@ public class ImageFrame extends JFrame
 	    // Open
 	    JMenuBuilder openBuilder = new JMenuBuilder("Open");
 	    
-	    OpenMenuItemBuilder loadGIF = new OpenMenuItemBuilder(new GIFReader(), component);
+	    OpenMenuItemBuilder loadGIF = new OpenMenuItemBuilder(new DefaultImageReader(), component);
 	    loadGIF.setName("Load GIF");
 	    openBuilder.addMenuItem(loadGIF);
+	    
+	    OpenMenuItemBuilder loadJPG = new OpenMenuItemBuilder(new DefaultImageReader(), component);
+        loadJPG.setName("Load JPG");
+        openBuilder.addMenuItem(loadJPG);
+        
+        OpenMenuItemBuilder loadPNG = new OpenMenuItemBuilder(new DefaultImageReader(), component);
+        loadPNG.setName("Load PNG");
+        openBuilder.addMenuItem(loadPNG);
 	    
 	    OpenMenuItemBuilder loadPPM = new OpenMenuItemBuilder(new PPMReader(), component);
         loadPPM.setName("Load PPM");
         openBuilder.addMenuItem(loadPPM);
 	    
 	    // Save
-//	    JMenuBuilder saveBuilder = new JMenuBuilder("Save");
-//        OpenMenuItemBuilder loadGIF = new OpenMenuItemBuilder(new GIFReader(), component);
-//        loadGIF.setName("Load GIF");
-//        openBuilder.addMenuItem(loadGIF);
-        
         JMenuBuilder saveBuilder = new JMenuBuilder("Save");
-        SaveMenuItemBuilder saveGIF = new SaveMenuItemBuilder(new GIFWriter(), component);
+        SaveMenuItemBuilder saveGIF = new SaveMenuItemBuilder(new DefaultImageWriter("gif"), component);
         saveGIF.setName("Save GIF");
         saveBuilder.addMenuItem(saveGIF);
+        
+        SaveMenuItemBuilder saveJPG = new SaveMenuItemBuilder(new DefaultImageWriter("jpg"), component);
+        saveJPG.setName("Save JPG");
+        saveBuilder.addMenuItem(saveJPG);
+        
+        SaveMenuItemBuilder savePNG = new SaveMenuItemBuilder(new DefaultImageWriter("png"), component);
+        savePNG.setName("Save PNG");
+        saveBuilder.addMenuItem(savePNG);
         
         fileMenu.add(openBuilder.getMenu());
         fileMenu.add(saveBuilder.getMenu());
