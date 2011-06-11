@@ -17,6 +17,7 @@ import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
 import edu.psu.sweng.kahindu.transform.LowPassFilter;
+import edu.psu.sweng.kahindu.transform.MedianFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
 import gui.NumImage;
@@ -74,7 +75,7 @@ public class ImageFrame extends JFrame
         mi.setName("LowPass-P3");
         builder.addMenuItem(mi);
         
-        mi = new TransformMenuItemBuilder(new MedianFilter(3, MedianFilter.SQUARE), component);
+        mi = new TransformMenuItemBuilder(new MedianFilter(3,MedianFilter.SQUARE), component);
         mi.setName("Median");
         builder.addMenuItem(mi);
 

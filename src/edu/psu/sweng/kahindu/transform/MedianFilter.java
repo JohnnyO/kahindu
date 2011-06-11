@@ -78,7 +78,6 @@ public class MedianFilter implements Transformer<KahinduImage> {
 		@Override
 		public Matrix getKernel(final int size) {
 			// This is a CSE 101 type problem here
-			
 			Matrix m = new Matrix(size, size);
 			m.fill(0);
 			for (int x = 0; x < size; x++) {
