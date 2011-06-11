@@ -9,7 +9,6 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.TransformedImage;
 import edu.psu.sweng.kahindu.transform.Transformer;
 
 public class TransformMenuItemBuilder extends AbstractMenuItemBuilder {

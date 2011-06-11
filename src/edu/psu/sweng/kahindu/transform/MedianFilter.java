@@ -106,7 +106,7 @@ public class MedianFilter implements Transformer<KahinduImage> {
 		return new MedianFilteredImage(input, shape.getKernel(size));
 	}
 
-	private class MedianFilteredImage implements KahinduImage {
+	private class MedianFilteredImage extends EdgeWrapTemplate {
 		private final Matrix kernel;
 		private final KahinduImage source;
 
@@ -159,25 +159,6 @@ public class MedianFilter implements Transformer<KahinduImage> {
 			return new Color(red, green, blue);
 
 		}
-
-		private int cy(int y) {
-			int height = source.getHeight();
-			if (y > height - 1)
-				return y - height + 1;
-			if (y < 0)
-				return height + y;
-			return y;
-		}
-
-		private int cx(int x) {
-			int width = source.getWidth();
-			if (x > width - 1)
-				return x - width + 1;
-			if (x < 0)
-				return width + x;
-			return x;
-		}
-
 	}
 
 	private int median(int[] window) {
