@@ -808,7 +808,8 @@ public void medianCross3x3() {
 	  		  if (k[ u+uc][v+vc] !=0) 
 	  			window[loc++]=f[x-u ][y-v];
 		h[x][y] = (short)median(window);
-		f[x][y] = (short)median(window);
+		//f[x][y] = (short)median(window);
+		//the above should not have been here, it is replacing values, mid calculation
       }
 
     }

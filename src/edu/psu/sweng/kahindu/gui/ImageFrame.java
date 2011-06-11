@@ -82,6 +82,11 @@ public class ImageFrame extends JFrame
         mi.setName("LowPass-P3");
         builder.addMenuItem(mi);
         
+        mi = new TransformMenuItemBuilder(new MedianFilter(3, MedianFilter.SQUARE), component);
+        mi.setName("Median");
+        builder.addMenuItem(mi);
+
+        
 
 
 

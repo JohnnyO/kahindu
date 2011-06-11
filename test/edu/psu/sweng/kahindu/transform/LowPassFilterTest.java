@@ -12,8 +12,8 @@ import edu.psu.sweng.kahindu.image.io.ImageReader;
 import gui.TopFrame;
 
 public class LowPassFilterTest  {
-	TopFrame topFrame;
-	KahinduImage kahinduImage;
+	private TopFrame topFrame;
+	private KahinduImage kahinduImage;
 
 	@Before
 	public void setUp() throws IOException {

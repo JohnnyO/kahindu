@@ -13,8 +13,8 @@ import gui.TopFrame;
 
 
 public class HighPassFilterTest {
-	TopFrame topFrame;
-	KahinduImage kahinduImage;
+	private TopFrame topFrame;
+	private KahinduImage kahinduImage;
 
 	@Before
 	public void setUp() throws IOException {

@@ -1,31 +1,99 @@
 package edu.psu.sweng.kahindu.transform;
 
+import java.awt.Color;
 import java.util.Arrays;
 
-
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.RawImageAdapter;
 import edu.psu.sweng.kahindu.matrix.Matrix;
 
 /**
- * Not currently functional, mostly because the original code was non-functional.
+ * Not currently functional, mostly because the original code was
+ * non-functional.
  * 
  * @author John
- *
+ * 
  */
-@Deprecated
+
 public class MedianFilter implements Transformer<KahinduImage> {
 
-	public enum Shape {
-		SQUARE, CROSS, DIAMOND, OCTAGON;
-
-		public Matrix getKernel(int size) {
-			Matrix m = new Matrix(size, size);
-			m.fill(1);
-			return m;
-		}
+	private interface Shape {
+		Matrix getKernel(int size);
 	}
 
+	public static final Shape SQUARE = new Shape() {
+		@Override
+		public Matrix getKernel(final int size) {
+			if (size % 2 == 1) {
+				Matrix m = new Matrix(size, size);
+				m.fill(1);
+				return m;
+			} else { // even sided matrices need to be padded up
+				int sizePlusOne = size + 1;
+				Matrix m = new Matrix(sizePlusOne, sizePlusOne);
+				m.fill(0);
+				for (int x = 0; x < size; x++)
+					for (int y = 0; y < size; y++)
+						m.setValueAt(x, y, 1);
+				return m;
+
+			}
+		}
+	};
+
+	public static final Shape CROSS = new Shape() {
+		@Override
+		public Matrix getKernel(final int size) {
+			if (size % 2 != 1)
+				throw new IllegalArgumentException("Cross filters must have an odd-length side");
+			Matrix m = new Matrix(size, size);
+			m.fill(0);
+			int midpoint = size / 2;
+			for (int i = 0; i < size; i++) {
+				m.setValueAt(i, midpoint, 1);
+				m.setValueAt(midpoint, i, 1);
+			}
+			m.normalize();
+			return m;
+		}
+
+	};
+
+	public static final Shape OCTAGON = new Shape() {
+		@Override
+		public Matrix getKernel(final int size) {
+			Matrix m = new Matrix(size, size);
+			m.fill(1);
+			// clear the four corners
+			m.setValueAt(0, 0, 0);
+			m.setValueAt(0, size - 1, 0);
+			m.setValueAt(size - 1, 0, 0);
+			m.setValueAt(size - 1, size - 1, 0);
+			return m;
+
+		}
+
+	};
+
+	public static final Shape DIAMOND = new Shape() {
+		@Override
+		public Matrix getKernel(final int size) {
+			// This is a CSE 101 type problem here
+			
+			Matrix m = new Matrix(size, size);
+			m.fill(0);
+			for (int x = 0; x < size; x++) {
+				for (int y = 0; y < size; y++) {
+					int xBar = Math.abs(x - (size/2));
+					int yBar = Math.abs(y - (size/2));
+					if (xBar + yBar <= (size / 2))
+						m.setValueAt(x, y, 1);
+				}
+			}
+			return m;
+
+		}
+
+	};
 	private int size;
 	private Shape shape;
 
@@ -34,56 +102,93 @@ public class MedianFilter implements Transformer<KahinduImage> {
 		this.size = size;
 	}
 
-
 	@Override
 	public KahinduImage transform(final KahinduImage input) {
-		// Because this is a non-linear transform, we have to copy out the image
-		// and do
-		// it all at once
-		int width = input.getWidth();
-		int height = input.getHeight();
+		return new MedianFilteredImage(input, shape.getKernel(size));
+	}
 
-		short red[][] = new short[width][height];
-		short green[][] = new short[width][height];
-		short blue[][] = new short[width][height];
+	private class MedianFilteredImage implements KahinduImage {
+		private final Matrix kernel;
+		private final KahinduImage source;
 
-		for (int x = 0; x < width; x++)
-			for (int y = 0; y < height; y++) {
-				red[x][y] = (short) input.getColor(x, y).getRed();
-				green[x][y] = (short) input.getColor(x, y).getGreen();
-				blue[x][y] = (short) input.getColor(x, y).getBlue();
-			}
-		Matrix kernel = shape.getKernel(size);
+		public MedianFilteredImage(KahinduImage source, Matrix kernel) {
+			this.source = source;
+			this.kernel = kernel;
+		}
 
-		int uc = kernel.getWidth() / 2;
-		int vc = kernel.getHeight() / 2;
+		@Override
+		public int getWidth() {
+			return source.getWidth();
+		}
 
-		int windowLength = numberOfNonZeros(kernel);
-		int window[][] = new int[3][windowLength];
+		@Override
+		public int getHeight() {
+			return source.getHeight();
+		}
 
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				int loc = 0;
-				for (int v = -vc; v <= vc; v++)
-					for (int u = -uc; u <= uc; u++)
-						if (kernel.getValue(u + uc,v + vc) != 0) {
-							window[0][loc] = red[cx(width, x - u)][cy(height, y - v)];
-							window[1][loc] = green[cx(width, x - u)][cy(height, y - v)];
-							window[2][loc] = blue[cx(width, x - u)][cy(height, y - v)];
-							loc++;
-						}
-				red[x][y] = (short) median(window[0]);
-				green[x][y] = (short) median(window[1]);
-				blue[x][y] = (short) median(window[2]);
-			}
+		@Override
+		public Color getColor(int x, int y) {
+			// Why would we do this? It's clearly wrong...
+			// That's true, but we are preserving backwards compatibility with
+			// the old code
+			// (The old code had an off-by-one error which creating black bars
+			// on the last row of pixels in each dimension
+			if (x == source.getWidth() - 1)
+				return Color.BLACK;
+			if (y == source.getHeight() - 1)
+				return Color.BLACK;
+
+			int uc = kernel.getWidth() / 2;
+			int vc = kernel.getHeight() / 2;
+
+			int windowLength = numberOfNonZeros(kernel);
+			int window[][] = new int[3][windowLength];
+
+			int loc = 0;
+			for (int v = -vc; v <= vc; v++)
+				for (int u = -uc; u <= uc; u++)
+					if (kernel.getValue(u + uc, v + vc) != 0) {
+						Color c = source.getColor(cx(x - u), cy(y - v));
+						window[0][loc] = c.getRed();
+						window[1][loc] = c.getGreen();
+						window[2][loc] = c.getBlue();
+						loc++;
+					}
+			int red = median(window[0]);
+			int green = median(window[1]);
+			int blue = median(window[2]);
+			return new Color(red, green, blue);
 
 		}
 
-		return new RawImageAdapter(width, height, red, green, blue);
+		private int cy(int y) {
+			int height = source.getHeight();
+			if (y > height - 1)
+				return y - height + 1;
+			if (y < 0)
+				return height + y;
+			return y;
+		}
+
+		private int cx(int x) {
+			int width = source.getWidth();
+			if (x > width - 1)
+				return x - width + 1;
+			if (x < 0)
+				return width + x;
+			return x;
+		}
+
 	}
-	
+
 	private int median(int[] window) {
+		// Note that due to rounding errors, the midpoint for odd length arrays
+		// is off-by-one. This bug
+		// existed in the original code, we preserve it simply for
+		// backwards-compatibility reasons.
 		int mid = window.length / 2 - 1;
+		if (!(coefficientOfVariation(window) > .1))
+			return window[mid];
 		Arrays.sort(window);
 		if ((window.length % 2) == 1)
 			return window[mid];
@@ -91,23 +196,6 @@ public class MedianFilter implements Transformer<KahinduImage> {
 			return (int) ((window[mid] + window[mid + 1] + 0.5) / 2);
 
 	}
-
-	private int cy(int height, int y) {
-		if (y > height - 1)
-			return y -height + 1;
-		if (y < 0)
-			return height + y;
-		return y;
-	}
-
-	private int cx(int width, int x) {
-		if (x > width - 1)
-			return x -width + 1;
-		if (x < 0)
-			return width + x;
-		return x;
-	}
-
 
 	private int numberOfNonZeros(Matrix k) {
 		int sum = 0;
@@ -118,4 +206,29 @@ public class MedianFilter implements Transformer<KahinduImage> {
 			}
 		return sum;
 	}
+
+	public static double mean(int a[]) {
+		double sum = 0;
+		for (int i = 0; i < a.length; i++)
+			sum += a[i];
+		return sum / a.length;
+	}
+
+	public static double variance(int a[]) {
+		double xBar = mean(a);
+		double sum = 0;
+		double dx = 0;
+		for (int i = 0; i < a.length; i++) {
+			dx = a[i] - xBar;
+			sum += dx * dx;
+		}
+		return sum / a.length;
+	}
+
+	public static double coefficientOfVariation(int a[]) {
+		double aBar = mean(a);
+		double aBar2 = aBar * aBar;
+		return Math.sqrt(variance(a) / aBar2);
+	}
+
 }

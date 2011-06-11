@@ -14,8 +14,8 @@ import gui.TopFrame;
 
 public class LinearTransformTest {
 
-	TopFrame topFrame;
-	KahinduImage kahinduImage;
+	private TopFrame topFrame;
+	private KahinduImage kahinduImage;
 
 	@Before
 	public void setUp() throws IOException {
