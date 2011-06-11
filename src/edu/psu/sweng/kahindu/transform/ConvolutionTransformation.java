@@ -77,7 +77,15 @@ public abstract class ConvolutionTransformation implements Transformer<KahinduIm
 					green += color.getGreen() * value;
 					blue += color.getBlue() * value;
 				}
-			return new Color((short) red, (short) green, (short) blue);
+			return new Color((short) bound(red), (short) bound(green), (short) bound(blue));
+		}
+
+		private short bound(double color) {
+			if (color > 255)
+				return 255;
+			if (color < 0)
+				return 0;
+			return (short)color;
 		}
 
 		private int cy(int y) {

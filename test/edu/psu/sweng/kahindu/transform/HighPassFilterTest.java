@@ -11,7 +11,8 @@ import edu.psu.sweng.kahindu.image.io.GIFReader;
 import edu.psu.sweng.kahindu.image.io.ImageReader;
 import gui.TopFrame;
 
-public class LowPassFilterTest  {
+
+public class HighPassFilterTest {
 	TopFrame topFrame;
 	KahinduImage kahinduImage;
 
@@ -23,39 +24,50 @@ public class LowPassFilterTest  {
 		ImageReader reader = new GIFReader();
 		kahinduImage = reader.read(new File("gifs/baboon.gif"));
 	}
-
+	
 	@Test
-	public void testAverage() {
-		topFrame.average();
-
-		Transformer<KahinduImage> t = new LowPassFilter(1);
-		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
-	}
-
-	@Test
-	public void testLP1() {
-		topFrame.lp1();
-
-		Transformer<KahinduImage> t = new LowPassFilter(2);
+	public void testHighPassOne() {
+		topFrame.hp1();
+		
+		Transformer<KahinduImage> t = new HighPassFilter(1);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
 	@Test
-	public void testLP2() {
-		topFrame.lp2();
-
-		Transformer<KahinduImage> t = new LowPassFilter(4);
+	public void testHighPassTwo() {
+		topFrame.hp2();
+		
+		Transformer<KahinduImage> t = new HighPassFilter(2);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
 	@Test
-	public void testLP3() {
-		topFrame.lp3();
-
-		Transformer<KahinduImage> t = new LowPassFilter(12);
+	public void testHighPassThree() {
+		topFrame.hp3();
+		
+		Transformer<KahinduImage> t = new HighPassFilter(3);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
+	@Test
+	public void testHighPassFour() {
+		topFrame.hp4();
+		
+		Transformer<KahinduImage> t = new HighPassFilter(4);
+		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+	}
 	
+	@Test
+	public void testHighPassFive() {
+		topFrame.hp5();
+		
+		Transformer<KahinduImage> t = new HighPassFilter(5);
+		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+	}
+
+
+
+
+
 
 }
