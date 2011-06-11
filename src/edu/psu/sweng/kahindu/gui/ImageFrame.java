@@ -97,11 +97,6 @@ public class ImageFrame extends JFrame
         openBuilder.addMenuItem(loadPPM);
 	    
 	    // Save
-//	    JMenuBuilder saveBuilder = new JMenuBuilder("Save");
-//        OpenMenuItemBuilder loadGIF = new OpenMenuItemBuilder(new GIFReader(), component);
-//        loadGIF.setName("Load GIF");
-//        openBuilder.addMenuItem(loadGIF);
-        
         JMenuBuilder saveBuilder = new JMenuBuilder("Save");
         SaveMenuItemBuilder saveGIF = new SaveMenuItemBuilder(new GIFWriter(), component);
         saveGIF.setName("Save GIF");
