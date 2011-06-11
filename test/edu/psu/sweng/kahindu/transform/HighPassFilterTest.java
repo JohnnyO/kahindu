@@ -64,6 +64,8 @@ public class HighPassFilterTest {
 		Transformer<KahinduImage> t = new HighPassFilter(5);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
+	
+
 
 
 

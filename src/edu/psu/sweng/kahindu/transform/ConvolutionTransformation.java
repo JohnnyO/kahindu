@@ -22,7 +22,7 @@ public abstract class ConvolutionTransformation implements Transformer<KahinduIm
 	/**
 	 * Each convolution is defined by a matrix of values, called the kernel. The final value of a pixel is calculated
 	 * by centering the matrix on the pixel, then summing the values of the neighboring pixels times the matrix values.
-	 * @return
+	 * @return the Matrix to be used in the convolution
 	 */
 	public abstract Matrix getKernel();
 

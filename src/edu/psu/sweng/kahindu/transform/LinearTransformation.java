@@ -13,7 +13,7 @@ public abstract class LinearTransformation implements Transformer<KahinduImage> 
 
 	/**
 	 * Implemented by subclasses to define how the linear transformation is to take place.
-	 * @return
+	 * @return the new color that this is transformed into
 	 */
 	public abstract Color transform(Color input);
 

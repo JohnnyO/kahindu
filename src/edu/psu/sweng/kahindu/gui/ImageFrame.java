@@ -20,6 +20,7 @@ import edu.psu.sweng.kahindu.transform.LowPassFilter;
 import edu.psu.sweng.kahindu.transform.MedianFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
+import edu.psu.sweng.kahindu.transform.SaltAndPepperTransformation;
 import gui.NumImage;
 
 public class ImageFrame extends JFrame
@@ -77,6 +78,10 @@ public class ImageFrame extends JFrame
         
         mi = new TransformMenuItemBuilder(new MedianFilter(3,MedianFilter.SQUARE), component);
         mi.setName("Median");
+        builder.addMenuItem(mi);
+
+        mi = new TransformMenuItemBuilder(new SaltAndPepperTransformation(500), component);
+        mi.setName("S&P 500");
         builder.addMenuItem(mi);
 
         
