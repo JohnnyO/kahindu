@@ -20,9 +20,11 @@ import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.matrix.Matrix;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
+import edu.psu.sweng.kahindu.transform.LowPassFilter;
+import edu.psu.sweng.kahindu.transform.MedianFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
-import edu.psu.sweng.kahindu.transform.SpatialTransformedImage;
+import edu.psu.sweng.kahindu.transform.ConvolutionTransformation;
 import gui.NumImage;
 
 public class ImageFrame extends JFrame
@@ -62,23 +64,29 @@ public class ImageFrame extends JFrame
 	}
 	
 	private JMenu getSpatialFilterMenu() {
-		JMenuItem item = new JMenuItem(new AbstractAction("LowPass - Average") {
+		JMenuBuilder builder = new JMenuBuilder("Spatial");
+		
+        TransformMenuItemBuilder mi = new TransformMenuItemBuilder(new LowPassFilter(1), component);
+        mi.setName("LowPass-Average");
+        builder.addMenuItem(mi);
+        
+        mi = new TransformMenuItemBuilder(new LowPassFilter(2), component);
+        mi.setName("LowPass-P1");
+        builder.addMenuItem(mi);
 
-            private static final long serialVersionUID = 1139557320916901550L;
+        mi = new TransformMenuItemBuilder(new LowPassFilter(4), component);
+        mi.setName("LowPass-P2");
+        builder.addMenuItem(mi);
+        
+        mi = new TransformMenuItemBuilder(new LowPassFilter(12), component);
+        mi.setName("LowPass-P3");
+        builder.addMenuItem(mi);
+        
 
-            @Override
-			public void actionPerformed(ActionEvent e) {
-				KahinduImage source = component.getImage();
-				Matrix matrix = new Matrix(3,3);
-				KahinduImage result = new SpatialTransformedImage(source, matrix);
-				component.updateImage(result);
 
-			}
-			
-		});
-		JMenu menu = new JMenu("Spatial");
-		menu.add(item);
-		return menu;
+
+
+		return builder.getMenu();
 	}
 
 	private JMenu getFileMenu()

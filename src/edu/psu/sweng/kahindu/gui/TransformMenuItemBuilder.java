@@ -14,16 +14,16 @@ import edu.psu.sweng.kahindu.transform.Transformer;
 
 public class TransformMenuItemBuilder extends AbstractMenuItemBuilder {
 
-	private Transformer<Color> transformer;
+	private Transformer<KahinduImage> transformer;
 	private ImageComponent target;
 	
-	public TransformMenuItemBuilder(Transformer<Color> t, ImageComponent target) {
+	public TransformMenuItemBuilder(Transformer<KahinduImage> t, ImageComponent target) {
 		this.setTransform(t);
 		this.setTarget(target);
 	}
 	
 	
-	public void setTransform(Transformer<Color> transformer) {
+	public void setTransform(Transformer<KahinduImage> transformer) {
 		this.transformer = transformer;
 	}
 	
@@ -42,7 +42,7 @@ public class TransformMenuItemBuilder extends AbstractMenuItemBuilder {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				KahinduImage source = target.getImage();
-				KahinduImage result = new TransformedImage(source, transformer);
+				KahinduImage result = transformer.transform(source);
 				target.updateImage(result);
 			}
 		};
