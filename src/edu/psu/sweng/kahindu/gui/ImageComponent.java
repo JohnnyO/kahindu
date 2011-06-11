@@ -9,7 +9,6 @@ import java.awt.image.MemoryImageSource;
 
 import javax.swing.JComponent;
 
-import edu.psu.sweng.kahindu.image.AWTImageAdapter;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
 public class ImageComponent extends JComponent {

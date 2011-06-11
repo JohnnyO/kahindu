@@ -7,9 +7,5 @@ import edu.psu.sweng.kahindu.image.KahinduImage;
 
 public interface ImageReader
 {
-	
-//	public void setFile(File file);
-	
 	KahinduImage read(File file) throws IOException;
-
 }
