@@ -20,7 +20,7 @@ import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.matrix.Matrix;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
-import edu.psu.sweng.kahindu.transform.LowPassAverage;
+import edu.psu.sweng.kahindu.transform.LowPassFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
 import edu.psu.sweng.kahindu.transform.ConvolutionTransformation;
@@ -64,19 +64,19 @@ public class ImageFrame extends JFrame
 	
 	private JMenu getSpatialFilterMenu() {
 		JMenuBuilder builder = new JMenuBuilder("Spatial");
-        TransformMenuItemBuilder mi = new TransformMenuItemBuilder(new LowPassAverage(1), component);
+        TransformMenuItemBuilder mi = new TransformMenuItemBuilder(new LowPassFilter(1), component);
         mi.setName("LowPass-Average");
         builder.addMenuItem(mi);
         
-        mi = new TransformMenuItemBuilder(new LowPassAverage(2), component);
+        mi = new TransformMenuItemBuilder(new LowPassFilter(2), component);
         mi.setName("LowPass-P1");
         builder.addMenuItem(mi);
 
-        mi = new TransformMenuItemBuilder(new LowPassAverage(4), component);
+        mi = new TransformMenuItemBuilder(new LowPassFilter(4), component);
         mi.setName("LowPass-P2");
         builder.addMenuItem(mi);
         
-        mi = new TransformMenuItemBuilder(new LowPassAverage(12), component);
+        mi = new TransformMenuItemBuilder(new LowPassFilter(12), component);
         mi.setName("LowPass-P3");
         builder.addMenuItem(mi);
 

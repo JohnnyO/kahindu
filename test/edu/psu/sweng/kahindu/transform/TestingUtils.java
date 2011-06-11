@@ -1,39 +1,15 @@
-package edu.psu.sweng.kahindu;
+package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
-import java.io.File;
-import java.io.IOException;
-
-import org.junit.Before;
-import org.junit.Test;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.io.GIFReader;
-import gui.ImageFrame;
 import gui.TopFrame;
 
 import static org.junit.Assert.*;
 
-public abstract class CharacterizationTest {
+public abstract class TestingUtils {
 
-	private TopFrame imgFrame;
-	private KahinduImage kahinduImage;
-
-	@Before
-	public void setUp() throws IOException {
-		imgFrame = new TopFrame("Test Frame");
-		imgFrame.openGif("gifs/baboon.GIF");
-		kahinduImage = (new GIFReader()).read(new File("gifs/baboon.GIF"));
-	}
-
-	public abstract TopFrame constructLegacyImage(TopFrame topFrame);
-
-	public abstract KahinduImage constructRefactoredImage(KahinduImage img);
-
-	@Test
-	public void compareImages() {
-		imgFrame = constructLegacyImage(imgFrame);
-		kahinduImage = constructRefactoredImage(kahinduImage);
+	public static void compareImages(TopFrame imgFrame, KahinduImage kahinduImage) {
 
 		// check that the images are the same size
 		assertEquals(kahinduImage.getHeight(), imgFrame.height);
@@ -51,7 +27,6 @@ public abstract class CharacterizationTest {
 				assertEquals(error,  bound(imgFrame.b[x][y]), c.getBlue());
 			}
 		}
-
 	}
 
 	/**
@@ -60,7 +35,7 @@ public abstract class CharacterizationTest {
 	 * until render time, since we are testing pre-render, we impose the bounds
 	 * in the test
 	 */
-	private int bound(short color) {
+	private static int bound(short color) {
 		if (color < 0)
 			return 0;
 		if (color > 255)

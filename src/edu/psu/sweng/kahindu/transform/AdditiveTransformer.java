@@ -29,17 +29,11 @@ public class AdditiveTransformer extends LinearTransformation {
 		return value;
 	}
 
-	@Override
-	public Transformer<Color> getColorTransform() {
-		return new Transformer<Color>() {
-			@Override
-			public Color transform(Color input) {
-				int red = bound(offset + input.getRed(), 0, 255);
-				int green = bound(offset + input.getGreen(), 0, 255);
-				int blue = bound(offset + input.getBlue(), 0, 255);
-				return new Color(red, green, blue);
-			}
-		};
+	public Color transform(Color input) {
+		int red = bound(offset + input.getRed(), 0, 255);
+		int green = bound(offset + input.getGreen(), 0, 255);
+		int blue = bound(offset + input.getBlue(), 0, 255);
+		return new Color(red, green, blue);
 	}
 
 }

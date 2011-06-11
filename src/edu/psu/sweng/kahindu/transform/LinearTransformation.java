@@ -15,23 +15,20 @@ public abstract class LinearTransformation implements Transformer<KahinduImage> 
 	 * Implemented by subclasses to define how the linear transformation is to take place.
 	 * @return
 	 */
-	public abstract Transformer<Color> getColorTransform();
+	public abstract Color transform(Color input);
 
 	public KahinduImage transform(final KahinduImage source) {
-		return new LinearTransformedImage(source, this.getColorTransform());
+		return new LinearTransformedImage(source);
 
 	}
 
 	private class LinearTransformedImage implements KahinduImage {
 
 		private final KahinduImage source;
-		private final Transformer<Color> transformer;
 
-		public LinearTransformedImage(final KahinduImage source, final Transformer<Color> transformer) {
+		public LinearTransformedImage(final KahinduImage source) {
 			assert (source != null);
-			assert (transformer != null);
 			this.source = source;
-			this.transformer = transformer;
 		}
 
 		@Override
@@ -46,7 +43,7 @@ public abstract class LinearTransformation implements Transformer<KahinduImage> 
 
 		@Override
 		public Color getColor(int x, int y) {
-			return transformer.transform(source.getColor(x, y));
+			return LinearTransformation.this.transform(source.getColor(x, y));
 		}
 	}
 }
