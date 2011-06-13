@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,7 +42,7 @@ public class LinearTransformTest {
 		Transformer<KahinduImage> t = new NegateTransformer();
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
-	
+
 	@Test
 	public void testAdditiveTransform() {
 		topFrame.add10();
@@ -49,7 +50,7 @@ public class LinearTransformTest {
 		Transformer<KahinduImage> t = new AdditiveTransformer(10);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
-	
+
 	@Test
 	public void testBrighten() {
 		topFrame.powImage(1.5);
@@ -57,7 +58,7 @@ public class LinearTransformTest {
 		Transformer<KahinduImage> t = new PowerTransformer(1.5);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
-	
+
 	@Test
 	public void testDarken() {
 		topFrame.powImage(0.9);
@@ -66,7 +67,28 @@ public class LinearTransformTest {
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 
+	@Test
+	public void testUniformNonAdaptiveHistogram() {
+		topFrame.unahe();
 
+		Transformer<KahinduImage> t = new UniformNonAdaptiveHistogram();
+		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+	}
 
+	@Test
+	public void testExponentialNonAdaptiveHistogram() {
+		topFrame.enahe(1.3);
+
+		Transformer<KahinduImage> t = new ExponentialNonAdaptiveHistogram(1.3);
+		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+	}
+
+	@Test
+	public void testRaleighHistogram() {
+		topFrame.rnahe(1.3);
+
+		Transformer<KahinduImage> t = new RaleighNonAdaptiveHistogram(1.3);
+		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+	}
 
 }
