@@ -48,9 +48,6 @@ public class ImageComponent extends JComponent {
 		displayableImage = Toolkit.getDefaultToolkit().createImage(source);
 		
 		this.repaint();
-		Window ancestor = SwingUtilities.getWindowAncestor(this);
-		if (ancestor != null)
-			ancestor.pack();
 	}
 
 	public KahinduImage getImage() {
@@ -61,5 +58,7 @@ public class ImageComponent extends JComponent {
 	public Dimension getPreferredSize() {
 		return new Dimension(image.getWidth(), image.getHeight());
 	}
+	
+	
 
 }

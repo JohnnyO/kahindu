@@ -2,16 +2,18 @@ package edu.psu.sweng.kahindu.gui;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.transform.Transformer;
 
-public class TransformMenuItemBuilder extends AbstractMenuItemBuilder {
+public class TransformMenuItemBuilder extends AbstractMenuLeaf {
 
 	private Transformer<KahinduImage> transformer;
 	private ImageComponent target;
@@ -32,7 +34,7 @@ public class TransformMenuItemBuilder extends AbstractMenuItemBuilder {
 	
 	
 	@Override
-	public JMenuItem buildMenuItem() {
+	public JMenuItem build() {
 		Action a = new AbstractAction(this.name) {
 			{
 				this.putValue(ACCELERATOR_KEY, TransformMenuItemBuilder.this.shortcutKey);
@@ -47,6 +49,22 @@ public class TransformMenuItemBuilder extends AbstractMenuItemBuilder {
 		};
 
 		return new JMenuItem(a);
+	}
+
+
+	protected File openFileDialog(ImageComponent component) {
+	    JFileChooser fc = new JFileChooser();
+	    fc.setCurrentDirectory(new File(IMAGE_DIRECTORY_NAME));
+	    fc.showOpenDialog(component);
+	    return fc.getSelectedFile();
+	}
+
+
+	protected File saveFileDialog(ImageComponent component) {
+	    JFileChooser fc = new JFileChooser();
+	    fc.setCurrentDirectory(new File(IMAGE_DIRECTORY_NAME));
+	    fc.showSaveDialog(component);
+	    return fc.getSelectedFile();
 	}
 
 
