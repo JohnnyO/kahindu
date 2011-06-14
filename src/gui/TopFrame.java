@@ -58,7 +58,7 @@ public class TopFrame extends WaveletFrame {
 		fileMenu.add(diffractionMenu);
 		fileMenu.add(movieMenu);
 		fileMenu.add(utilMenu);
-		commandLine();
+		//commandLine();
 	}
  public static void main(String args[]) {
  	String title = "Kahindu by D. Lyon";
@@ -66,8 +66,9 @@ public class TopFrame extends WaveletFrame {
  		title = args[0];
 	TopFrame tf = 
 		new TopFrame(title);
+	tf.pack();
 	tf.setVisible(true);
-	tf.setSize(64,64);
+	//tf.setSize(64,64);
 
  }
  public void actionPerformed(ActionEvent e) {

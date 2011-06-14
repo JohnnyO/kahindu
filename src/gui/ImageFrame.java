@@ -75,7 +75,7 @@ private void initialize() {
 	initMenu();
 	grabNumImage();
 	
-	show();
+	//show();
 	setSize(width, height);
 	repaint();
  }

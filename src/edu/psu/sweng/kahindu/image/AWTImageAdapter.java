@@ -16,17 +16,19 @@ public class AWTImageAdapter implements KahinduImage
     {
         this.bufferedImage = image;
     }
-
-    public AWTImageAdapter(KahinduImage kImage)
-    {
-        Image image = getImage(kImage);
+    
+    public AWTImageAdapter(Image image) {
         bufferedImage = new BufferedImage(image.getWidth(null),
                 image.getHeight(null), BufferedImage.TYPE_INT_RGB);
         Graphics bg = bufferedImage.getGraphics();
         bg.drawImage(image, 0, 0, null);
         bg.dispose();
 
-        // this.bufferedImage = getImage(image);
+    }
+
+    public AWTImageAdapter(KahinduImage kImage)
+    {
+       this(getImage(kImage));
     }
     
     public BufferedImage getBufferedImage()
@@ -34,7 +36,7 @@ public class AWTImageAdapter implements KahinduImage
         return this.bufferedImage;
     }
 
-    public Image getImage(KahinduImage image)
+    public static Image getImage(KahinduImage image)
     {
         int height = image.getHeight();
         int width = image.getWidth();

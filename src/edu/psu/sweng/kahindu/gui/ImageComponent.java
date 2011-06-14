@@ -5,10 +5,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.image.MemoryImageSource;
 
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 
+import edu.psu.sweng.kahindu.image.AWTImageAdapter;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
 public class ImageComponent extends JComponent {
@@ -45,10 +48,13 @@ public class ImageComponent extends JComponent {
 		displayableImage = Toolkit.getDefaultToolkit().createImage(source);
 		
 		this.repaint();
+		Window ancestor = SwingUtilities.getWindowAncestor(this);
+		if (ancestor != null)
+			ancestor.pack();
 	}
 
 	public KahinduImage getImage() {
-		return image;
+		return new AWTImageAdapter(displayableImage);
 	}
 	
 	@Override

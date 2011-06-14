@@ -16,6 +16,7 @@ import edu.psu.sweng.kahindu.image.io.DefaultImageWriter;
 import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
+import edu.psu.sweng.kahindu.transform.LegacyTransform;
 import edu.psu.sweng.kahindu.transform.LowPassFilter;
 import edu.psu.sweng.kahindu.transform.MedianFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
@@ -84,7 +85,10 @@ public class ImageFrame extends JFrame
         mi.setName("S&P 500");
         builder.addMenuItem(mi);
 
-        
+        mi = new TransformMenuItemBuilder(new LegacyTransform("turn90"), component);
+        mi.setName("Turn 90 ");
+        builder.addMenuItem(mi);
+
 
 
 
