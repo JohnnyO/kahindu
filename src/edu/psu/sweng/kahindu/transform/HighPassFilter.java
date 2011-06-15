@@ -14,6 +14,10 @@ public class HighPassFilter extends ConvolutionTransformation {
 		filters.put(3, new Matrix(3, 3, new float[] { 0, -1, 0, -1, 5, -1, 0, -1, 0 }));
 		filters.put(4, new Matrix(3, 3, new float[] { 1, -2, 1, -2, 5, -2, 1, -2, 1 }));
 		filters.put(5, new Matrix(3, 3, new float[] { -1, -1, -1, -1, 9, -1, -1, -1, -1 }));
+		filters.put(6, new Matrix(3, 3, new float[] { -2, -1, 0, -1, 0, 1, 0, 1, 2 }));
+		for (int i = 1; i <= 5; i++)
+			filters.get(i).normalize();
+		//we don't normalize level 6, because it sums to 0
 
 	}
 
@@ -27,8 +31,7 @@ public class HighPassFilter extends ConvolutionTransformation {
 	public Matrix getKernel() {
 		Matrix m = filters.get(level);
 		if (m == null)
-			throw new IllegalArgumentException("Unknown filter level");
-		m.normalize();
+			throw new IllegalArgumentException("Unknown filter");
 		return m;
 
 	}

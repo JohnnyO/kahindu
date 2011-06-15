@@ -10,6 +10,8 @@ import edu.psu.sweng.kahindu.matrix.Matrix;
  * 
  */
 public class LowPassFilter extends ConvolutionTransformation {
+	
+	
 
 	private final float center;
 

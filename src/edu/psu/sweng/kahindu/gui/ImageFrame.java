@@ -14,7 +14,9 @@ import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageWriter;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
+import edu.psu.sweng.kahindu.transform.ExponentialNonAdaptiveHistogram;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
+import edu.psu.sweng.kahindu.transform.HighPassFilter;
 import edu.psu.sweng.kahindu.transform.LegacyTransform;
 import edu.psu.sweng.kahindu.transform.LowPassFilter;
 import edu.psu.sweng.kahindu.transform.MedianFilter;
@@ -22,12 +24,12 @@ import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
 import edu.psu.sweng.kahindu.transform.RaleighNonAdaptiveHistogram;
 import edu.psu.sweng.kahindu.transform.SaltAndPepperTransformation;
+import edu.psu.sweng.kahindu.transform.UniformNonAdaptiveHistogram;
 import gui.NumImage;
 
-public class ImageFrame extends JFrame
-{
-    private static final long serialVersionUID = 3848669250991405715L;
-    
+public class ImageFrame extends JFrame {
+	private static final long serialVersionUID = 3848669250991405715L;
+
 	private final ImageComponent component;
 
 	private KahinduImage image;
@@ -37,7 +39,7 @@ public class ImageFrame extends JFrame
 		File defaultImage = new File("gifs/baboon.GIF");
 		try {
 			this.image = new ByteArrayImageReader(NumImage.gray).read(defaultImage);
-			//this.image = new GIFReader(new File("gifs/baboon.GIF")).read();
+			// this.image = new GIFReader(new File("gifs/baboon.GIF")).read();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -48,122 +50,93 @@ public class ImageFrame extends JFrame
 		this.pack();
 	}
 
-	private JMenuBar getMenu()
-	{
+	private JMenuBar getMenu() {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(getFileMenu());
 		menuBar.add(getFilterMenu());
 		menuBar.add(getSpatialFilterMenu());
-		
+
 		return menuBar;
 	}
-	
+
 	private JMenu getSpatialFilterMenu() {
-		JMenuBuilder builder = new JMenuBuilder("Spatial");
+
+		JMenuBuilder builder = new JMenuBuilder("Spatial", component);
+
+		JMenuBuilder lowPassBuilder = new JMenuBuilder("Low-Pass", component);
+		lowPassBuilder.add("Average", new LowPassFilter(1));
+		lowPassBuilder.add("Low-Pass 1", new LowPassFilter(2));
+		lowPassBuilder.add("Low-Pass 2", new LowPassFilter(4));
+		lowPassBuilder.add("Low-Pass 3", new LowPassFilter(12));
+
+		JMenuBuilder medianBuilder = new JMenuBuilder("Median", component);
+		medianBuilder.add("Cross   (3x3)", new MedianFilter(3, MedianFilter.CROSS));
+		medianBuilder.add("Square  (3x3)", new MedianFilter(3, MedianFilter.SQUARE));
+		medianBuilder.add("Octagon (5x5)", new MedianFilter(5, MedianFilter.OCTAGON));
+		medianBuilder.add("Square  (5x5)", new MedianFilter(5, MedianFilter.SQUARE));
+		medianBuilder.add("Diamond (7x7)", new MedianFilter(7, MedianFilter.DIAMOND));
+		medianBuilder.add("Cross   (7x7)", new MedianFilter(7, MedianFilter.CROSS));
+
+		medianBuilder.add("Salt & Pepper (100)", new SaltAndPepperTransformation(100));
+		medianBuilder.add("Salt & Pepper (1000)", new SaltAndPepperTransformation(1000));
+		medianBuilder.add("Salt & Pepper (2000)", new SaltAndPepperTransformation(2000));
+		medianBuilder.add("Salt & Pepper (4000)", new SaltAndPepperTransformation(4000));
 		
-        AbstractMenuLeaf mi = new TransformMenuItemBuilder(new LowPassFilter(1), component);
-        mi.setName("LowPass-Average");
-        builder.addItem(mi);
-        
-        mi = new TransformMenuItemBuilder(new LowPassFilter(2), component);
-        mi.setName("LowPass-P1");
-        builder.addItem(mi);
+		JMenuBuilder highPassBuilder = new JMenuBuilder("High-Pass", component);
+		highPassBuilder.add("High Pass 1", new HighPassFilter(1));
+		highPassBuilder.add("High Pass 2", new HighPassFilter(2));
+		highPassBuilder.add("High Pass 3", new HighPassFilter(3));
+		highPassBuilder.add("High Pass 4", new HighPassFilter(4));
+		highPassBuilder.add("High Pass 5", new HighPassFilter(5));
+		highPassBuilder.add("Shadow Mask (hp6)", new HighPassFilter(6));
+		
 
-        mi = new TransformMenuItemBuilder(new LowPassFilter(4), component);
-        mi.setName("LowPass-P2");
-        builder.addItem(mi);
-        
-        mi = new TransformMenuItemBuilder(new LowPassFilter(12), component);
-        mi.setName("LowPass-P3");
-        builder.addItem(mi);
-        
-        mi = new TransformMenuItemBuilder(new MedianFilter(3,MedianFilter.SQUARE), component);
-        mi.setName("Median");
-        builder.addItem(mi);
+		
 
-        mi = new TransformMenuItemBuilder(new SaltAndPepperTransformation(500), component);
-        mi.setName("S&P 500");
-        builder.addItem(mi);
-
-        mi = new ParameterizedTransformMI(new RaleighNonAdaptiveHistogram(), component);
-        mi.setName("Turn 90 ");
-        builder.addItem(mi);
-
+		builder.addItem(lowPassBuilder);
+		builder.addItem(medianBuilder);
+		builder.addItem(highPassBuilder);
 		return builder.build();
 	}
 
-	private JMenu getFileMenu()
-	{
-		JMenuBuilder file = new JMenuBuilder("File");
-		
-	    // Open
-	    JMenuBuilder openBuilder = new JMenuBuilder("Open");
-	    
-	    AbstractMenuLeaf loadGIF = new OpenMenuItemBuilder(new DefaultImageReader(), component);
-	    loadGIF.setName("Load GIF");
-	    openBuilder.addItem(loadGIF);
-	    
-	    AbstractMenuLeaf loadJPG = new OpenMenuItemBuilder(new DefaultImageReader(), component);
-        loadJPG.setName("Load JPG");
-        openBuilder.addItem(loadJPG);
-        
-        AbstractMenuLeaf loadPNG = new OpenMenuItemBuilder(new DefaultImageReader(), component);
-        loadPNG.setName("Load PNG");
-        openBuilder.addItem(loadPNG);
-	    
-        AbstractMenuLeaf loadPPM = new OpenMenuItemBuilder(new AdvancedImageReader(), component);
-        loadPPM.setName("Load PPM");
-        openBuilder.addItem(loadPPM);
-	    
-	    // Save
-        JMenuBuilder saveBuilder = new JMenuBuilder("Save");
-        SaveMenuItemBuilder saveGIF = new SaveMenuItemBuilder(new DefaultImageWriter("gif"), component);
-        saveGIF.setName("Save GIF");
-        saveBuilder.addItem(saveGIF);
-        
-        SaveMenuItemBuilder saveJPG = new SaveMenuItemBuilder(new DefaultImageWriter("jpg"), component);
-        saveJPG.setName("Save JPG");
-        saveBuilder.addItem(saveJPG);
-        
-        SaveMenuItemBuilder savePNG = new SaveMenuItemBuilder(new DefaultImageWriter("png"), component);
-        savePNG.setName("Save PNG");
-        saveBuilder.addItem(savePNG);
-        
-        SaveMenuItemBuilder savePPM = new SaveMenuItemBuilder(new AdvancedImageWriter("PNM"), component);
-        savePPM.setName("Save PPM");
-        saveBuilder.addItem(savePPM);
-        
-        file.addItem(openBuilder);
-        file.addItem(saveBuilder);
-	    
-	    return file.build();
+	private JMenu getFileMenu() {
+		JMenuBuilder file = new JMenuBuilder("File", component);
+
+		JMenuBuilder openBuilder = new JMenuBuilder("Open", component);
+		openBuilder.add("Load GIF", new DefaultImageReader());
+		openBuilder.add("Load JPG", new DefaultImageReader());
+		openBuilder.add("Load PNG", new DefaultImageReader());
+		openBuilder.add("Load PPM", new AdvancedImageReader());
+
+		JMenuBuilder saveBuilder = new JMenuBuilder("Save", component);
+		saveBuilder.add("Save GIF", new DefaultImageWriter("gif"));
+		saveBuilder.add("Save JPG", new DefaultImageWriter("jpg"));
+		saveBuilder.add("Save PNG", new DefaultImageWriter("png"));
+		saveBuilder.add("Save PPM", new DefaultImageWriter("PNM"));
+
+		file.addItem(openBuilder);
+		file.addItem(saveBuilder);
+
+		return file.build();
 	}
-	
-	private JMenu getFilterMenu()
-	{
-	    JMenuBuilder builder = new JMenuBuilder("Filters");
 
-        TransformMenuItemBuilder negate = new TransformMenuItemBuilder(new NegateTransformer(), component);
-        negate.setName("Negate");
-        builder.addItem(negate);
+	private JMenu getFilterMenu() {
+		JMenuBuilder builder = new JMenuBuilder("Filters", component);
+		builder.add("Negate", new NegateTransformer());
+		builder.add("Gray", new GrayTransformer());
+		builder.add("Add 10", new AdditiveTransformer(10));
+		builder.add("Brighten", new PowerTransformer(0.9));
+		builder.add("Darken", new PowerTransformer(1.5));
 
-        TransformMenuItemBuilder gray = new TransformMenuItemBuilder(new GrayTransformer(), component);
-        gray.setName("Gray");
-        builder.addItem(gray);
+		JMenuBuilder histograms = new JMenuBuilder("Histograms", component);
+		histograms.add("Show Histograms", new LegacyTransform("histogram"));
+		
+		histograms.add("Uniform (Non-Adaptive)", new UniformNonAdaptiveHistogram());
+		histograms.add("Exponential (Non-Adaptive)", new ExponentialNonAdaptiveHistogram());
+		histograms.add("Raleigh (Non-Adaptive)", new RaleighNonAdaptiveHistogram());
 
-        TransformMenuItemBuilder add10 = new TransformMenuItemBuilder(new AdditiveTransformer(10), component);
-        add10.setName("Add 10");
-        builder.addItem(add10);
-
-        TransformMenuItemBuilder brighten = new TransformMenuItemBuilder(new PowerTransformer(0.9), component);
-        brighten.setName("Brighten");
-        builder.addItem(brighten);
-
-        TransformMenuItemBuilder darken = new TransformMenuItemBuilder(new PowerTransformer(1.5), component);
-        darken.setName("Darken");
-        builder.addItem(darken);
-        
-        return builder.build();
+		builder.addItem(histograms);
+		return builder.build();
 	}
 
 }

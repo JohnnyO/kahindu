@@ -18,7 +18,6 @@ public class RaleighNonAdaptiveHistogram extends HistogramTransform implements P
 
 	@Override
 	public void setParameter(String key, double value) {
-		System.out.println(key + "  " + value);
 		if (KEY.equals(key))
 			this.alpha = value;
 		else
