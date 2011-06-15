@@ -1,5 +1,5 @@
 package gui;
-import java.awt.*;import java.awt.event.*;
+import java.awt.Color;
 
 public class Pixel  implements Comparable {
 	Color c;

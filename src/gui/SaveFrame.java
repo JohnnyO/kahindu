@@ -1,10 +1,21 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.zip.*;
-import java.util.*;
-import vs.*;
+import java.awt.FileDialog;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.util.zip.GZIPOutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import vs.WritePPM;
 
 public class SaveFrame extends NegateFrame {
 	Menu saveMenu = new Menu("Save");

@@ -1,6 +1,7 @@
 package gui;
-import vs.*;
-import java.awt.*;
+import vs.ColorUtils;
+import vs.ImageUtils;
+import vs.vsFFT;
 
 public class FFTRadix2 {
 	

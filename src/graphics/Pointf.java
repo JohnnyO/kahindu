@@ -1,5 +1,6 @@
 package graphics;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Point;
 
 /**
  * The <code>Pointf</code> class represents a location in a

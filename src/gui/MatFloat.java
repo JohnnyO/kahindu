@@ -1,7 +1,12 @@
 package gui;
-import java.io.*;
-import java.awt.*;
-import java.util.zip.*;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 public class MatFloat extends 
 	Mat {

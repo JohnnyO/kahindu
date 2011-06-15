@@ -1,8 +1,9 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import java.io.*;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 
 
 public class EdgeFrame extends SpatialFilterFrame 

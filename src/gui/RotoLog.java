@@ -1,5 +1,5 @@
 package gui;
-import java.awt.*;import java.awt.event.*;
+import java.awt.event.ActionEvent;
 public class RotoLog extends DoubleLog {
 private XformFrame xf;
 

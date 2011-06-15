@@ -1,7 +1,23 @@
 package htmlconverter;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.FileDialog;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class HtmlGenerator extends Frame implements ActionListener {
 

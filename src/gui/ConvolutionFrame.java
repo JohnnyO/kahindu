@@ -1,6 +1,6 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 public class ConvolutionFrame extends OpenFrame {
 
  ConvolutionFrame(String title) {

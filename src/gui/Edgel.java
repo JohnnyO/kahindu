@@ -1,5 +1,5 @@
 package gui;
-import java.awt.*;
+import java.awt.Point;
 
 public class Edgel {
 	public static final int OPEN = 1;

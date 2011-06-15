@@ -1,8 +1,16 @@
 package dclap;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import gui.*;
+import gui.ShortCutFrame;
+
+import java.awt.Component;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class PictFrame extends ShortCutFrame {
 	private	static final String args[] = {""};

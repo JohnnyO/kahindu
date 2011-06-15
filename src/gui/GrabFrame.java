@@ -1,7 +1,13 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.net.*;
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class GrabFrame extends FilterFrame {
 

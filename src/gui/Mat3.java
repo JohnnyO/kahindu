@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.*;
+import java.awt.Polygon;
 
 public class Mat3 {
 	double a[] []  = 

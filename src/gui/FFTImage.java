@@ -1,6 +1,8 @@
 package gui;
 
-import fft.*;
+import fft.FFT2d;
+import fft.IFFT2d;
+import fft.ImageUtils;
 
 // Calculate the fft of input image, using fft.FFT2d.
 public class FFTImage {

@@ -1,7 +1,6 @@
 
 package gui;
 
-import java.awt.*;
 
 
 public class Hsb extends FloatPlane {

@@ -1,6 +1,14 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Graphics;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 public class AffineFrame extends ShortCutFrame 
 	implements MouseListener,MouseMotionListener{

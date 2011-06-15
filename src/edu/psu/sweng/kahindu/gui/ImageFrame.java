@@ -10,10 +10,11 @@ import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
+import edu.psu.sweng.kahindu.image.io.AdvancedImageReader;
+import edu.psu.sweng.kahindu.image.io.AdvancedImageWriter;
 import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageWriter;
-import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
 import edu.psu.sweng.kahindu.transform.LowPassFilter;
@@ -111,7 +112,7 @@ public class ImageFrame extends JFrame
         loadPNG.setName("Load PNG");
         openBuilder.addMenuItem(loadPNG);
 	    
-	    OpenMenuItemBuilder loadPPM = new OpenMenuItemBuilder(new PPMReader(), component);
+	    OpenMenuItemBuilder loadPPM = new OpenMenuItemBuilder(new AdvancedImageReader(), component);
         loadPPM.setName("Load PPM");
         openBuilder.addMenuItem(loadPPM);
 	    
@@ -128,6 +129,10 @@ public class ImageFrame extends JFrame
         SaveMenuItemBuilder savePNG = new SaveMenuItemBuilder(new DefaultImageWriter("png"), component);
         savePNG.setName("Save PNG");
         saveBuilder.addMenuItem(savePNG);
+        
+        SaveMenuItemBuilder savePPM = new SaveMenuItemBuilder(new AdvancedImageWriter("PNM"), component);
+        savePPM.setName("Save PPM");
+        saveBuilder.addMenuItem(savePPM);
         
         fileMenu.add(openBuilder.getMenu());
         fileMenu.add(saveBuilder.getMenu());

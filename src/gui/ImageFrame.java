@@ -1,10 +1,21 @@
 package gui;
 
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FileDialog;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.image.ColorModel;
+import java.awt.image.MemoryImageSource;
+import java.awt.image.PixelGrabber;
+import java.io.File;
 
 public class ImageFrame extends ShortCutFrame {
 

@@ -1,9 +1,8 @@
 package edu.psu.sweng.kahindu.transform;
 
-import edu.psu.sweng.kahindu.image.KahinduImage;
-import gui.Histogram;
-
 import java.awt.Color;
+
+import edu.psu.sweng.kahindu.image.KahinduImage;
 
 public abstract class HistogramTransform implements Transformer<KahinduImage> {
 

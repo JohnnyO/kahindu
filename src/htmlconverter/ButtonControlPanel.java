@@ -1,6 +1,9 @@
 package htmlconverter;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Button;
+import java.awt.FlowLayout;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ButtonControlPanel 
 	extends Panel implements ActionListener {

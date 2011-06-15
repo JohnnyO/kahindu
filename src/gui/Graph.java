@@ -1,6 +1,11 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 
 public class Graph extends Frame {
 

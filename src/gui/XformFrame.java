@@ -1,6 +1,12 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Dimension;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 
 public class XformFrame extends ColorFrame {
 

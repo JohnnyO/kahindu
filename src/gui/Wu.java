@@ -14,7 +14,6 @@
 
 package gui;
 
-import java.awt.*;
 
  class Box 
 {

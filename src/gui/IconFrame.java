@@ -1,8 +1,13 @@
 package gui;
-import java.awt.*;
-import java.awt.image.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
 
 public class IconFrame 
 	extends ClosableFrame implements ActionListener {

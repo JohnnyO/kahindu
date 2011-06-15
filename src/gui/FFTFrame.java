@@ -1,7 +1,6 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import fft.*;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
 
 public class FFTFrame extends XformFrame {
 	MenuItem fftpfa_mi =addMenuItem(xformMenu,"pfa fft");

@@ -1,7 +1,6 @@
 package edu.psu.sweng.kahindu.transform;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.transform.HistogramTransform.Histogram;
 
 public class UniformNonAdaptiveHistogram extends HistogramTransform {
 

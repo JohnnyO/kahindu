@@ -1,5 +1,5 @@
 package gui;
-import java.lang.reflect.*;
+import java.lang.reflect.Method;
 
 public class ComparableMethod 
 	implements Comparable {

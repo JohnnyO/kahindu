@@ -1,5 +1,6 @@
-import gui.*;
-import java.applet.*; 
+import gui.TopFrame;
+
+import java.applet.Applet;
 /**
  *  The main class for
  *  starting Kahindu Vision

@@ -1,7 +1,10 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.util.Collections;
+import java.util.Vector;
 
 public class SpatialFilterFrame extends ConvolutionFrame {
  public SpatialFilterFrame child = null;

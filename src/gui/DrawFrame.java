@@ -1,7 +1,9 @@
 package gui;
-import java.awt.*;
-import java.awt.image.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class DrawFrame extends WaveletFrame 
 		implements FocusListener {

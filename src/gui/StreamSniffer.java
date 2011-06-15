@@ -1,6 +1,8 @@
 package gui;
-import java.io.*;
-import java.util.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Hashtable;
 public class StreamSniffer {
 	private BufferedInputStream bis;
 	private byte header[] = new byte[6];

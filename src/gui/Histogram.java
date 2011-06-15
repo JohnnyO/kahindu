@@ -8,10 +8,24 @@
  */
 package gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import dclap.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.FileDialog;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.PrintJob;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import dclap.SavePICT;
 
 public class Histogram extends ShortCutFrame 
 	implements ActionListener{

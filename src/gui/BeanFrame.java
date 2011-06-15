@@ -1,9 +1,17 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import java.lang.reflect.*;
-import java.util.*;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.beans.BeanDescriptor;
+import java.beans.BeanInfo;
+import java.beans.EventSetDescriptor;
+import java.beans.IntrospectionException;
+import java.beans.MethodDescriptor;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
+import java.util.Hashtable;
 
  public class BeanFrame extends ShortCutFrame
 	implements  BeanInfo, ActionListener {

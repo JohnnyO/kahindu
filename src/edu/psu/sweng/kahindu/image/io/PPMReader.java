@@ -28,6 +28,8 @@ public class PPMReader implements ImageReader
     public KahinduImage read(File file) throws IOException
     {
         return getImage(file);
+//        RenderedImage ri = JAI.create("fileload", file.getAbsolutePath());
+//        return new AWTImageAdapter(ri);
     }
     
     private KahinduImage getImage(File file) throws IOException
@@ -70,29 +72,6 @@ public class PPMReader implements ImageReader
         }
         
         return new RawImageAdapter(d.width, d.height, r, g, b);
-        
-//        return new KahinduImage()
-//        {
-//
-//            @Override
-//            public int getWidth()
-//            {
-//                return d.width;
-//            }
-//
-//            @Override
-//            public int getHeight()
-//            {
-//                return d.height;
-//            }
-//
-//            @Override
-//            public Color getColor(int x, int y)
-//            {
-//                return new Color(r[x][y], g[x][y], b[x][y]);
-//            }
-//
-//        };
     }
 
     private Dimension readHeaderInfo(InputStream in) throws IOException

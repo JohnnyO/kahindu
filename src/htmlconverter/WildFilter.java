@@ -1,5 +1,6 @@
  package htmlconverter;
- import java.io.*;
+ import java.io.File;
+import java.io.FilenameFilter;
  
  class WildFilter implements FilenameFilter{
   private String suffix;

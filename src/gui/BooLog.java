@@ -1,6 +1,12 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Button;
+import java.awt.Dialog;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
 	BooLog - the boolean dialog

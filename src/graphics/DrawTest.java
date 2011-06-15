@@ -1,7 +1,17 @@
 package graphics;
-import gui.*;
-import java.awt.event.*;
-import java.awt.*;
+import gui.ShortCutFrame;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Vector;
 
 public class DrawTest extends ShortCutFrame

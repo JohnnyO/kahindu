@@ -1,7 +1,9 @@
 package gui;
-import java.util.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Vector;
 
 public class ColorHash extends Hashtable {
 

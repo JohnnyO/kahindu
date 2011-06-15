@@ -5,7 +5,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 import java.awt.image.MemoryImageSource;
+import java.awt.image.RenderedImage;
+import java.awt.image.WritableRaster;
+import java.util.Hashtable;
 
 public class AWTImageAdapter implements KahinduImage
 {
@@ -29,6 +33,35 @@ public class AWTImageAdapter implements KahinduImage
         // this.bufferedImage = getImage(image);
     }
     
+    public AWTImageAdapter(RenderedImage img)
+    {
+        if (img instanceof BufferedImage)
+        {
+            this.bufferedImage = (BufferedImage) img;
+        }
+        
+        ColorModel cm = img.getColorModel();
+        int width = img.getWidth();
+        int height = img.getHeight();
+        WritableRaster raster = cm
+                .createCompatibleWritableRaster(width, height);
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        Hashtable<String, Object> properties = new Hashtable<String, Object>();
+        String[] keys = img.getPropertyNames();
+        if (keys != null)
+        {
+            for (int i = 0; i < keys.length; i++)
+            {
+                properties.put(keys[i], img.getProperty(keys[i]));
+            }
+        }
+        BufferedImage result = new BufferedImage(cm, raster,
+                isAlphaPremultiplied, properties);
+        img.copyData(raster);
+        
+        this.bufferedImage = result;
+    }
+    
     public BufferedImage getBufferedImage()
     {
         return this.bufferedImage;
@@ -49,7 +82,7 @@ public class AWTImageAdapter implements KahinduImage
 
         return Toolkit.getDefaultToolkit().createImage(source);
     }
-
+    
     @Override
     public int getWidth()
     {

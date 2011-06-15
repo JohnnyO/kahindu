@@ -1,9 +1,17 @@
 package graphics;
-import gui.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import dclap.*;
+import gui.Mat3;
+import gui.ShortCutFrame;
+import gui.XformFrame;
+
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 
 public class Spiral extends ShortCutFrame  {
 	

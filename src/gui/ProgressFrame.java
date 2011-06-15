@@ -1,7 +1,12 @@
 package gui;
-import java.awt.*;import java.awt.event.*;
-import java.lang.*;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 public class ProgressFrame extends Frame {
         long startTime = System.currentTimeMillis();
         private static final long UNIT = 1000;

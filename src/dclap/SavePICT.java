@@ -5,12 +5,24 @@ package dclap;
 // pack edu.indiana.bio.dclap;
 
 
-import java.awt.*;
-import java.applet.*;
-import java.net.*;
-import java.io.*;
-
-import java.util.*;
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Label;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.TextComponent;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 
 

@@ -1,7 +1,10 @@
 package gui;
 
-import java.awt.*;
-import java.awt.image.*;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.IndexColorModel;
+import java.awt.image.MemoryImageSource;
 
 /** Converts an RGB image to 8-bit index color using Heckbert's median-cut
     color quantization algorithm. Based on median.c by Anton Kruger from the

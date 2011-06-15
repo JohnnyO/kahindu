@@ -1,8 +1,7 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import java.lang.reflect.*;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.lang.reflect.Method;
 
 class ComMenuItem extends MenuItem {
 	public Method m;

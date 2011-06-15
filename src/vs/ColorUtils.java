@@ -7,9 +7,6 @@
  */
 package vs;
 
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
 
 public class ColorUtils
 {

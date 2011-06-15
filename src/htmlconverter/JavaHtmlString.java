@@ -1,5 +1,4 @@
 package htmlconverter;
-import java.io.*;
 
 public class JavaHtmlString {
 

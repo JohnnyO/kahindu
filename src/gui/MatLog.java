@@ -1,7 +1,7 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Panel;
 
 
 public class MatLog extends 

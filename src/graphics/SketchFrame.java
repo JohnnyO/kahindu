@@ -1,9 +1,27 @@
 package graphics;
-import gui.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import dclap.*;
+import gui.ColorGridFrame;
+import gui.Mat3;
+import gui.ShortCutFrame;
+import gui.XformFrame;
+
+import java.awt.Component;
+import java.awt.FileDialog;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import dclap.SavePICT;
 
 public class SketchFrame extends ShortCutFrame 
 	implements MouseListener,MouseMotionListener {

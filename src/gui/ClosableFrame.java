@@ -1,6 +1,8 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class ClosableFrame extends Frame
 	implements WindowListener { 

@@ -1,7 +1,18 @@
 package idx;
-import java.applet.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class Application extends Frame
 	 implements Runnable, KeyListener, WindowListener, 

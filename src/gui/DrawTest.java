@@ -1,5 +1,8 @@
 package gui;
-import java.awt.*;import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Polygon;
 
 public class DrawTest extends Frame {
 	Timer t = new Timer();

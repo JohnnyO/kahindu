@@ -1,5 +1,7 @@
 package htmlconverter;
-import java.awt.*;import java.awt.event.*;
+import java.awt.Checkbox;
+import java.awt.GridLayout;
+import java.awt.Panel;
 
 public class FileControlPanel extends Panel {
 

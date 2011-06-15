@@ -1,6 +1,6 @@
 package vs;
 
-import java.io.*;
+import java.io.PrintStream;
 
 public class vsTimer {
 	private long base_time;

@@ -8,11 +8,18 @@ package dclap;
 // pack edu.indiana.bio.dclap;
 
 
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
-import java.text.AttributedCharacterIterator;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Gr2PICT is a Graphics subclass that draws to PICT format.

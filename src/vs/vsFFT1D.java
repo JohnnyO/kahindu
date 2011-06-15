@@ -8,8 +8,6 @@
 ****************************************************************************/
 package vs;
 
-import java.awt.*;
-import java.io.*;
 
 
 public class vsFFT1D

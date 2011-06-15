@@ -4,11 +4,16 @@ package gui;
 // top.
 // To add frames, insert them below TopFrame.
 // 8/23/98 - DL
-import java.util.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.lang.reflect.*;
-import java.io.*;
+import java.awt.FileDialog;
+import java.awt.Image;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.lang.reflect.Method;
+import java.util.Vector;
 public class TopFrame extends WaveletFrame {
 
 	Menu reflectionMenu = new Menu("reflection");

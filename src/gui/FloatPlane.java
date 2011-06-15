@@ -1,5 +1,4 @@
 package gui;
-import java.awt.*;
 
 abstract public class FloatPlane {
 	public float r[][];

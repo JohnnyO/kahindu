@@ -1,7 +1,12 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.AWTEvent;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
  public class  ShortCutFrame extends ClosableFrame 
  	implements KeyListener, ActionListener {

@@ -1,6 +1,8 @@
 package idx;
-import java.awt.*;
-import java.awt.image.*;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.ColorModel;
+import java.awt.image.MemoryImageSource;
 
  
 public class NumImage {

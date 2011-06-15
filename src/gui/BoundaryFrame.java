@@ -1,7 +1,16 @@
 package gui;
-import java.awt.*;import java.awt.event.*;
-import java.io.*;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.PrintJob;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.util.Vector;
 
 
 public class BoundaryFrame extends MorphFrame  {

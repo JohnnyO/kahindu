@@ -10,14 +10,12 @@
 // | -------------------------------------------------------------
 package idx;
 
-import java.applet.*;
-import java.awt.Graphics;
-import java.awt.Color;
+import java.applet.Applet;
 import java.awt.Image;
-import java.awt.image.*;
-import java.util.Date;
+import java.awt.image.ColorModel;
+import java.awt.image.MemoryImageSource;
 import java.awt.image.PixelGrabber;
-import java.net.URL;
+import java.util.Date;
 
 class idx3d extends Applet
 {

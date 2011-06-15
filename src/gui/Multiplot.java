@@ -1,7 +1,11 @@
 package gui;
-import java.awt.*;import java.awt.event.*;
-import java.applet.*;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.StringTokenizer;
 
 public class Multiplot {
        

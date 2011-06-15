@@ -1,8 +1,17 @@
 package gui;
-import java.awt.*;
-import java.awt.image.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.AWTEventMulticaster;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.ColorModel;
+import java.awt.image.MemoryImageSource;
 
 public class IconComponent extends Component {
 	Dimension imageDim;

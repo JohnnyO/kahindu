@@ -1,12 +1,10 @@
 package edu.psu.sweng.kahindu.gui;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.transform.Transformer;

@@ -1,11 +1,14 @@
 package gui;
-import java.awt.*;
 import java.applet.Applet;
-import java.io.*;
-import java.util.*;
-import gui.*;
-import java.awt.event.*;
-import java.lang.reflect.*;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.lang.reflect.Method;
+import java.util.StringTokenizer;
 
 public class Console 
 	extends Applet implements ActionListener

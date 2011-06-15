@@ -1,8 +1,15 @@
 package gui;
 
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Label;
+import java.awt.Toolkit;
+import java.awt.image.ColorModel;
+import java.awt.image.IndexColorModel;
 import java.util.Random;
-import java.awt.*;
-import java.awt.image.*;
 
 public final class ColorGridFrame extends ClosableFrame {
     private ColorGrid cgrid;

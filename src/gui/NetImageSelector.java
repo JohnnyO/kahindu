@@ -1,8 +1,13 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
 import java.applet.Applet;
-import java.net.*;
+import java.awt.AWTEvent;
+import java.awt.Choice;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Label;
+import java.awt.Toolkit;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class NetImageSelector extends Applet  {

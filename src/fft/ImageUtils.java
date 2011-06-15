@@ -8,9 +8,6 @@
 package fft;
 //package WDYLBJIP1;
 
-import java.awt.*;
-import java.io.*;
-import java.awt.image.*;
 
 public class ImageUtils {
 

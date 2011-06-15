@@ -8,9 +8,10 @@
  */
 package vs;
 
-import java.io.*;
-import java.awt.*;import java.awt.event.*;
-import java.awt.image.*;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class WritePPM
 {

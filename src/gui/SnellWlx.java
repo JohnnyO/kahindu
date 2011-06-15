@@ -1,7 +1,24 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.applet.*;
+import java.applet.Applet;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Panel;
+import java.awt.PrintJob;
+import java.awt.Scrollbar;
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SnellWlx extends Applet {
    Frame myFrame = new Frame("Bars");

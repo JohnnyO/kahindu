@@ -37,7 +37,6 @@ package fft;
 //
 
 
-import java.awt.*;
 
 public class FFT1d extends TempVars {
   // Maximum numbers of factors allowed.

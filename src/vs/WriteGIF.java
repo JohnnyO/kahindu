@@ -14,9 +14,13 @@
  */
 package vs;
 
-import java.io.*;
-import java.awt.*;import java.awt.event.*;
-import java.awt.image.*;
+import java.awt.AWTException;
+import java.awt.Image;
+import java.awt.image.PixelGrabber;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class WriteGIF {
    short width_, height_;

@@ -1,6 +1,7 @@
 package gui;
-import java.awt.*;
-import java.util.*;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.util.Vector;
 
 public class AnimateFrame 
 	extends ClosableFrame {

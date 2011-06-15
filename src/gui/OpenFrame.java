@@ -1,8 +1,18 @@
 package gui;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.zip.*;
+import java.awt.MenuItem;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.io.DataInputStream;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class OpenFrame extends SaveFrame {
 	private boolean fileIsPPM = false;

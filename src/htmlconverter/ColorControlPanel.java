@@ -1,5 +1,6 @@
 package htmlconverter;
-import java.awt.*;import java.awt.event.*;
+import java.awt.GridLayout;
+import java.awt.Panel;
 
 public class ColorControlPanel extends Panel {
 

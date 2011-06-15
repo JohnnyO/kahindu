@@ -1,8 +1,12 @@
 package gui;
-import java.util.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.math.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.event.ActionEvent;
+import java.util.Vector;
 
 public class MartelliFrame extends PaintFrame  {
 	private Vector nodes = new Vector(); 

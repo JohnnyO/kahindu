@@ -1,5 +1,8 @@
 package htmlconverter;
-import java.awt.*;import java.awt.event.*;
+import java.awt.Choice;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Panel;
 
 public class ColorControlField extends Panel {
 

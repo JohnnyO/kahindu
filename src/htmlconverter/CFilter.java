@@ -1,6 +1,6 @@
 package htmlconverter; 
-import java.io.FilenameFilter;
 import java.io.File;
+import java.io.FilenameFilter;
 // Thanks to
 // curry@IMPACT.xerox.com (Don Curry)
 // for his simplifying suggestion here...
