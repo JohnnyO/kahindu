@@ -77,9 +77,9 @@ public class LinearTransformTest {
 
 	@Test
 	public void testExponentialNonAdaptiveHistogram() {
-		topFrame.enahe(1.3);
+		topFrame.enahe(4.0);
 
-		Transformer<KahinduImage> t = new ExponentialNonAdaptiveHistogram(1.3);
+		Transformer<KahinduImage> t = new ExponentialNonAdaptiveHistogram();
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 
@@ -87,7 +87,8 @@ public class LinearTransformTest {
 	public void testRaleighHistogram() {
 		topFrame.rnahe(1.3);
 
-		Transformer<KahinduImage> t = new RaleighNonAdaptiveHistogram(1.3);
+		ParameterizedTransformer t = new RaleighNonAdaptiveHistogram();
+		t.setParameter(RaleighNonAdaptiveHistogram.KEY, 1.3);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 

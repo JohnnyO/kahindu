@@ -20,6 +20,7 @@ import edu.psu.sweng.kahindu.transform.LowPassFilter;
 import edu.psu.sweng.kahindu.transform.MedianFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
+import edu.psu.sweng.kahindu.transform.RaleighNonAdaptiveHistogram;
 import edu.psu.sweng.kahindu.transform.SaltAndPepperTransformation;
 import gui.NumImage;
 
@@ -60,7 +61,7 @@ public class ImageFrame extends JFrame
 	private JMenu getSpatialFilterMenu() {
 		JMenuBuilder builder = new JMenuBuilder("Spatial");
 		
-        TransformMenuItemBuilder mi = new TransformMenuItemBuilder(new LowPassFilter(1), component);
+        AbstractMenuLeaf mi = new TransformMenuItemBuilder(new LowPassFilter(1), component);
         mi.setName("LowPass-Average");
         builder.addItem(mi);
         
@@ -84,7 +85,7 @@ public class ImageFrame extends JFrame
         mi.setName("S&P 500");
         builder.addItem(mi);
 
-        mi = new TransformMenuItemBuilder(new LegacyTransform("turn90"), component);
+        mi = new ParameterizedTransformMI(new RaleighNonAdaptiveHistogram(), component);
         mi.setName("Turn 90 ");
         builder.addItem(mi);
 

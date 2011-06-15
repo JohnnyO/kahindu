@@ -31,4 +31,5 @@ public class LowPassFilter extends ConvolutionTransformation {
 		return m;
 	}
 
+
 }
