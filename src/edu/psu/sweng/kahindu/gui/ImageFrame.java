@@ -1,19 +1,18 @@
 package edu.psu.sweng.kahindu.gui;
 
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
+import edu.psu.sweng.kahindu.image.io.AdvancedImageReader;
+import edu.psu.sweng.kahindu.image.io.AdvancedImageWriter;
 import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageWriter;
-import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
 import edu.psu.sweng.kahindu.transform.LegacyTransform;
@@ -89,10 +88,6 @@ public class ImageFrame extends JFrame
         mi.setName("Turn 90 ");
         builder.addItem(mi);
 
-
-
-
-
 		return builder.build();
 	}
 
@@ -115,7 +110,7 @@ public class ImageFrame extends JFrame
         loadPNG.setName("Load PNG");
         openBuilder.addItem(loadPNG);
 	    
-        AbstractMenuLeaf loadPPM = new OpenMenuItemBuilder(new PPMReader(), component);
+        AbstractMenuLeaf loadPPM = new OpenMenuItemBuilder(new AdvancedImageReader(), component);
         loadPPM.setName("Load PPM");
         openBuilder.addItem(loadPPM);
 	    
@@ -132,6 +127,10 @@ public class ImageFrame extends JFrame
         SaveMenuItemBuilder savePNG = new SaveMenuItemBuilder(new DefaultImageWriter("png"), component);
         savePNG.setName("Save PNG");
         saveBuilder.addItem(savePNG);
+        
+        SaveMenuItemBuilder savePPM = new SaveMenuItemBuilder(new AdvancedImageWriter("PNM"), component);
+        savePPM.setName("Save PPM");
+        saveBuilder.addItem(savePPM);
         
         file.addItem(openBuilder);
         file.addItem(saveBuilder);
