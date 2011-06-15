@@ -4,26 +4,30 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JMenu;
+import javax.swing.KeyStroke;
 
-public class JMenuBuilder {
+public class JMenuBuilder extends MenuNode {
 
-	private List<JMenuItemBuilder> builders;
 	private final String title;
+	private final List<MenuNode> builders;
 	
+
+
 	public JMenuBuilder(String title) {
 		this.title = title;
-		builders = new LinkedList<JMenuItemBuilder>();
+		this.builders = new LinkedList<MenuNode>();
 	}
-	
-	public void addMenuItem(JMenuItemBuilder jmiBuilder) {
+
+
+	public void addItem(MenuNode jmiBuilder) {
 		builders.add(jmiBuilder);
 	}
-	
-	public JMenu getMenu() {
+
+	public JMenu build() {
 		JMenu menu = new JMenu(title);
-		for (JMenuItemBuilder jmiBuilder : builders) {
-			menu.add(jmiBuilder.buildMenuItem());
-		}
+		for (MenuNode b : builders)
+			menu.add(b.build());
 		return menu;
 	}
+
 }

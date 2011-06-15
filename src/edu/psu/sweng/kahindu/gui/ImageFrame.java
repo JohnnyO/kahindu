@@ -10,13 +10,13 @@ import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.io.AdvancedImageReader;
-import edu.psu.sweng.kahindu.image.io.AdvancedImageWriter;
 import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageWriter;
+import edu.psu.sweng.kahindu.image.io.PPMReader;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
+import edu.psu.sweng.kahindu.transform.LegacyTransform;
 import edu.psu.sweng.kahindu.transform.LowPassFilter;
 import edu.psu.sweng.kahindu.transform.MedianFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
@@ -63,81 +63,80 @@ public class ImageFrame extends JFrame
 		
         TransformMenuItemBuilder mi = new TransformMenuItemBuilder(new LowPassFilter(1), component);
         mi.setName("LowPass-Average");
-        builder.addMenuItem(mi);
+        builder.addItem(mi);
         
         mi = new TransformMenuItemBuilder(new LowPassFilter(2), component);
         mi.setName("LowPass-P1");
-        builder.addMenuItem(mi);
+        builder.addItem(mi);
 
         mi = new TransformMenuItemBuilder(new LowPassFilter(4), component);
         mi.setName("LowPass-P2");
-        builder.addMenuItem(mi);
+        builder.addItem(mi);
         
         mi = new TransformMenuItemBuilder(new LowPassFilter(12), component);
         mi.setName("LowPass-P3");
-        builder.addMenuItem(mi);
+        builder.addItem(mi);
         
         mi = new TransformMenuItemBuilder(new MedianFilter(3,MedianFilter.SQUARE), component);
         mi.setName("Median");
-        builder.addMenuItem(mi);
+        builder.addItem(mi);
 
         mi = new TransformMenuItemBuilder(new SaltAndPepperTransformation(500), component);
         mi.setName("S&P 500");
-        builder.addMenuItem(mi);
+        builder.addItem(mi);
 
-        
+        mi = new TransformMenuItemBuilder(new LegacyTransform("turn90"), component);
+        mi.setName("Turn 90 ");
+        builder.addItem(mi);
 
 
 
 
-		return builder.getMenu();
+
+		return builder.build();
 	}
 
 	private JMenu getFileMenu()
 	{
-	    JMenu fileMenu = new JMenu("File");
-
+		JMenuBuilder file = new JMenuBuilder("File");
+		
 	    // Open
 	    JMenuBuilder openBuilder = new JMenuBuilder("Open");
 	    
-	    OpenMenuItemBuilder loadGIF = new OpenMenuItemBuilder(new DefaultImageReader(), component);
+	    AbstractMenuLeaf loadGIF = new OpenMenuItemBuilder(new DefaultImageReader(), component);
 	    loadGIF.setName("Load GIF");
-	    openBuilder.addMenuItem(loadGIF);
+	    openBuilder.addItem(loadGIF);
 	    
-	    OpenMenuItemBuilder loadJPG = new OpenMenuItemBuilder(new DefaultImageReader(), component);
+	    AbstractMenuLeaf loadJPG = new OpenMenuItemBuilder(new DefaultImageReader(), component);
         loadJPG.setName("Load JPG");
-        openBuilder.addMenuItem(loadJPG);
+        openBuilder.addItem(loadJPG);
         
-        OpenMenuItemBuilder loadPNG = new OpenMenuItemBuilder(new DefaultImageReader(), component);
+        AbstractMenuLeaf loadPNG = new OpenMenuItemBuilder(new DefaultImageReader(), component);
         loadPNG.setName("Load PNG");
-        openBuilder.addMenuItem(loadPNG);
+        openBuilder.addItem(loadPNG);
 	    
-	    OpenMenuItemBuilder loadPPM = new OpenMenuItemBuilder(new AdvancedImageReader(), component);
+        AbstractMenuLeaf loadPPM = new OpenMenuItemBuilder(new PPMReader(), component);
         loadPPM.setName("Load PPM");
-        openBuilder.addMenuItem(loadPPM);
+        openBuilder.addItem(loadPPM);
 	    
 	    // Save
         JMenuBuilder saveBuilder = new JMenuBuilder("Save");
         SaveMenuItemBuilder saveGIF = new SaveMenuItemBuilder(new DefaultImageWriter("gif"), component);
         saveGIF.setName("Save GIF");
-        saveBuilder.addMenuItem(saveGIF);
+        saveBuilder.addItem(saveGIF);
         
         SaveMenuItemBuilder saveJPG = new SaveMenuItemBuilder(new DefaultImageWriter("jpg"), component);
         saveJPG.setName("Save JPG");
-        saveBuilder.addMenuItem(saveJPG);
+        saveBuilder.addItem(saveJPG);
         
         SaveMenuItemBuilder savePNG = new SaveMenuItemBuilder(new DefaultImageWriter("png"), component);
         savePNG.setName("Save PNG");
-        saveBuilder.addMenuItem(savePNG);
+        saveBuilder.addItem(savePNG);
         
-        SaveMenuItemBuilder savePPM = new SaveMenuItemBuilder(new AdvancedImageWriter("PNM"), component);
-        savePPM.setName("Save PPM");
-        saveBuilder.addMenuItem(savePPM);
-        
-        fileMenu.add(openBuilder.getMenu());
-        fileMenu.add(saveBuilder.getMenu());
+        file.addItem(openBuilder);
+        file.addItem(saveBuilder);
 	    
-	    return fileMenu;
+	    return file.build();
 	}
 	
 	private JMenu getFilterMenu()
@@ -145,26 +144,26 @@ public class ImageFrame extends JFrame
 	    JMenuBuilder builder = new JMenuBuilder("Filters");
 
         TransformMenuItemBuilder negate = new TransformMenuItemBuilder(new NegateTransformer(), component);
-        negate.setName("Negate").setShortcutKey(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
-        builder.addMenuItem(negate);
+        negate.setName("Negate");
+        builder.addItem(negate);
 
         TransformMenuItemBuilder gray = new TransformMenuItemBuilder(new GrayTransformer(), component);
         gray.setName("Gray");
-        builder.addMenuItem(gray);
+        builder.addItem(gray);
 
         TransformMenuItemBuilder add10 = new TransformMenuItemBuilder(new AdditiveTransformer(10), component);
         add10.setName("Add 10");
-        builder.addMenuItem(add10);
+        builder.addItem(add10);
 
         TransformMenuItemBuilder brighten = new TransformMenuItemBuilder(new PowerTransformer(0.9), component);
         brighten.setName("Brighten");
-        builder.addMenuItem(brighten);
+        builder.addItem(brighten);
 
         TransformMenuItemBuilder darken = new TransformMenuItemBuilder(new PowerTransformer(1.5), component);
         darken.setName("Darken");
-        builder.addMenuItem(darken);
+        builder.addItem(darken);
         
-        return builder.getMenu();
+        return builder.build();
 	}
 
 }

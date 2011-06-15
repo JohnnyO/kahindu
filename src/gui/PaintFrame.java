@@ -70,7 +70,7 @@ public class PaintFrame extends BoundaryFrame
 	public PaintFrame(String title) {
 		super(title);
 		SpatialFilterMenu.add(paintMenu);
-		showIconFrame();
+		//showIconFrame();
 		addMouseListener(this);
 		addMouseMotionListener(this);
 	}
