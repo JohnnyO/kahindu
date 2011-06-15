@@ -23,7 +23,12 @@ public class Matrix {
 		this.data = data;
 	}
 
-	public int getHeight() {
+	public Matrix(int width, int height, float value) {
+	    this(width,height);
+	    fill(value);
+    }
+
+    public int getHeight() {
 		return height;
 	}
 
@@ -41,7 +46,7 @@ public class Matrix {
 		}
 	}
 
-	public void fill(int value) {
+	public void fill(float value) {
 		for (int i=0; i < data.length; i++) {
 			data[i] = value;
 		}

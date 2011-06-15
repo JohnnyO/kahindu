@@ -93,6 +93,44 @@ public class MedianFilter implements Transformer<KahinduImage> {
 		}
 
 	};
+	
+	   public static final Shape HORIZONTAL_LINE = new Shape() {
+	        @Override
+	        public Matrix getKernel(final int size) {
+	            if (size % 2 != 1)
+	                throw new IllegalArgumentException("Line filters must have an odd-length side");
+	            Matrix m = new Matrix(size, size);
+	            m.fill(0);
+	            int midpoint = size / 2;
+	            for (int i = 0; i <=midpoint; i++) {
+	                
+	                m.setValueAt(midpoint, i, 1);
+	            }
+	            return m;
+	        }
+
+	    };
+	    
+	      public static final Shape VERTICAL_LINE = new Shape() {
+	            @Override
+	            public Matrix getKernel(final int size) {
+	                if (size % 2 != 1)
+	                    throw new IllegalArgumentException("Line filters must have an odd-length side");
+	                Matrix m = new Matrix(size, size);
+	                m.fill(0);
+	                int midpoint = size / 2;
+	                for (int i = 0; i <=midpoint; i++) {
+	                    
+	                    m.setValueAt(i, midpoint, 1);
+	                }
+	                return m;
+	            }
+
+	        };
+
+
+	
+	
 	private int size;
 	private Shape shape;
 

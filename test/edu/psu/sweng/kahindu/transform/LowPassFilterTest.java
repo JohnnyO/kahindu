@@ -57,6 +57,62 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
+	   @Test
+	    public void testMean3() {
+	        topFrame.mean3();
+
+	        Transformer<KahinduImage> t = new ConvolutionTransformation(MEAN3);
+	        TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+	    }
+	   
+       @Test
+       public void testMean9() {
+           topFrame.mean9();
+
+           Transformer<KahinduImage> t = new ConvolutionTransformation(MEAN9);
+           TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+       }
+       
+       @Test
+       public void testGuass3() {
+           topFrame.gauss3();
+
+           Transformer<KahinduImage> t = new ConvolutionTransformation(GUASSIAN3);
+           TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+       }
+       
+       
+       @Test
+       public void testGuass7() {
+           topFrame.gauss7();
+
+           Transformer<KahinduImage> t = new ConvolutionTransformation(GUASSIAN7);
+           TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+       }
+       
+       @Test
+       public void testGuass31() {
+           topFrame.gauss31();
+
+           Transformer<KahinduImage> t = new ConvolutionTransformation(GUASSIAN31);
+           TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+       }
+       
+       @Test
+       public void testGuass15() {
+           topFrame.gauss15();
+
+           Transformer<KahinduImage> t = new ConvolutionTransformation(GUASSIAN15);
+           TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
+       }
+
+       
+
+
+
+
+
+	
 	
 
 }

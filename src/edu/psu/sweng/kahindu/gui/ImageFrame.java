@@ -23,6 +23,7 @@ import edu.psu.sweng.kahindu.transform.MedianFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
 import edu.psu.sweng.kahindu.transform.RaleighNonAdaptiveHistogram;
+import edu.psu.sweng.kahindu.transform.RobertsTransform;
 import edu.psu.sweng.kahindu.transform.SaltAndPepperTransformation;
 import edu.psu.sweng.kahindu.transform.UniformNonAdaptiveHistogram;
 import gui.NumImage;
@@ -71,6 +72,13 @@ public class ImageFrame extends JFrame {
 		lowPassBuilder.add("Low-Pass 1", new ConvolutionTransformation(LOW_PASS_ONE));
 		lowPassBuilder.add("Low-Pass 2", new ConvolutionTransformation(LOW_PASS_TWO));
 		lowPassBuilder.add("Low-Pass 3", new ConvolutionTransformation(LOW_PASS_THREE));
+	    lowPassBuilder.add("Mean 3", new ConvolutionTransformation(MEAN3));
+	    lowPassBuilder.add("Mean 9", new ConvolutionTransformation(MEAN9));
+	    lowPassBuilder.add("Guassian 3x3", new ConvolutionTransformation(GUASSIAN3));
+	    lowPassBuilder.add("Guassian 7x7", new ConvolutionTransformation(GUASSIAN7));
+	    lowPassBuilder.add("Guassian 15x15", new ConvolutionTransformation(GUASSIAN15));
+	    lowPassBuilder.add("Guassian 31x31", new ConvolutionTransformation(GUASSIAN31));
+
 
 		JMenuBuilder medianBuilder = new JMenuBuilder("Median", component);
 		medianBuilder.add("Cross   (3x3)", new MedianFilter(3, MedianFilter.CROSS));
@@ -93,12 +101,22 @@ public class ImageFrame extends JFrame {
 		highPassBuilder.add("High Pass 5", new ConvolutionTransformation(HIGH_PASS_FIVE));
 		highPassBuilder.add("Shadow Mask (hp6)",new ConvolutionTransformation(SHADOW_MASK));
 		
+        JMenuBuilder edgeMenu = new JMenuBuilder("Edge", component);
+        edgeMenu.add("Roberts 2", new RobertsTransform());
+        edgeMenu.add("Median Square (2x2)", new MedianFilter(2, MedianFilter.SQUARE));
+        edgeMenu.add("Median Line (2x1)", new MedianFilter(3, MedianFilter.VERTICAL_LINE));
+        edgeMenu.add("Median Line (1x2)", new MedianFilter(3, MedianFilter.HORIZONTAL_LINE));
 
+
+
+		
 		
 
 		builder.addItem(lowPassBuilder);
 		builder.addItem(medianBuilder);
 		builder.addItem(highPassBuilder);
+	      builder.addItem(edgeMenu);
+
 		return builder.build();
 	}
 
