@@ -37,7 +37,7 @@ public class Matrix {
 	}
 
 	public float getValue(int x, int y) {
-		return data[x + y*width];
+		return data[x*width + y];
 	}
 	
 	public void scale(float scale) {
@@ -54,7 +54,7 @@ public class Matrix {
 	}
 
 	public void setValueAt(int x, int y, float center) {
-		 data[x + y*width] = center;
+		 data[x*width + y] = center;
 	}
 
 	public float sum() {

@@ -1,6 +1,5 @@
 package edu.psu.sweng.kahindu.matrix;
 
-
 public class MatrixDictionary {
 
     public static final Matrix LOW_PASS_AVERAGE = getLowPass(1);
@@ -11,14 +10,15 @@ public class MatrixDictionary {
     public static final Matrix MEAN3 = new Matrix(3, 3, 0.11111111f);
     public static final Matrix MEAN9 = new Matrix(9, 9, 1 / 81.0f);
 
-  //we took these values directly from the original application, no documentation provided on how they were calculated
+    // we took these values directly from the original application, no
+    // documentation provided on how they were calculated
     public static final Matrix GUASSIAN3 = new Matrix(3, 3, new float[] { 1, 2,
             1, 2, 4, 2, 1, 2, 1 }).normalize();
     public static final Matrix GUASSIAN7 = new Matrix(7, 7, new float[] { 1, 1,
             2, 2, 2, 1, 1, 1, 2, 2, 4, 2, 2, 1, 2, 2, 4, 8, 4, 2, 2, 2, 4, 8,
             16, 8, 4, 2, 2, 2, 4, 8, 4, 2, 2, 1, 2, 2, 4, 2, 2, 1, 1, 1, 2, 2,
             2, 1, 1 }).normalize();
-    public static final Matrix GUASSIAN15 = new Matrix(15, 15, new float[] {  
+    public static final Matrix GUASSIAN15 = new Matrix(15, 15, new float[] {
             1.9045144E-7f, 9.671922E-7f, 3.8253193E-6f, 1.1782813E-5f,
             2.8265502E-5f, 5.2806907E-5f, 7.6833596E-5f, 8.7063876E-5f,
             7.6833596E-5f, 5.2806907E-5f, 2.8265502E-5f, 1.1782813E-5f,
@@ -79,6 +79,10 @@ public class MatrixDictionary {
 
     public static final Matrix GUASSIAN31 = getGaussKernel(31, 31, 2.0);
 
+    /**
+     * High pass kernels
+     */
+
     public static final Matrix HIGH_PASS_ONE = new Matrix(3, 3, new float[] {
             0, -1, 0, -1, 10, -1, 0, -1, 0 }).normalize();
     public static final Matrix HIGH_PASS_TWO = new Matrix(3, 3, new float[] {
@@ -92,6 +96,18 @@ public class MatrixDictionary {
     public static final Matrix SHADOW_MASK = new Matrix(3, 3, new float[] { -2,
             -1, 0, -1, 0, 1, 0, 1, 2 }); // NOTE: don't normalize the shadow
                                          // mask
+
+    /**
+     * morph kernels
+     */
+
+    public static final Matrix KH = new Matrix(3, 3, new float[] { 0, 0, 0, 1,
+            1, 1, 0, 0, 0 });
+    public static final Matrix KV = new Matrix(3, 3, new float[] { 0, 1, 0, 0,
+            1, 0, 0, 1, 0 });
+    public static final Matrix KSQUARE = new Matrix(3, 3, 1);
+    public static final Matrix KCROSS = new Matrix(3,3,new float []{0,1,0,1,1,1,0,1,0});
+
 
     private static Matrix getLowPass(int centroid) {
         Matrix m = new Matrix(3, 3);
