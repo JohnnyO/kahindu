@@ -1,6 +1,7 @@
 package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
+import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
@@ -9,22 +10,13 @@ public class RobertsTransform implements Transformer<KahinduImage> {
     @Override
     public KahinduImage transform(final KahinduImage input) {
         final KahinduImage grayScale = new GrayTransformer().transform(input);
-        return new KahinduImage() {
-
-            @Override
-            public int getWidth() {
-                return grayScale.getWidth();
-            }
-
-            @Override
-            public int getHeight() {
-                return grayScale.getHeight();
-            }
+        return new DefaultImageDecorator(input) {
 
             @Override
             public Color getColor(int x, int y) {
                 if ((x == grayScale.getWidth() - 1) || (y == grayScale.getHeight() - 1)) {
-                    //Once again, we see that our previous developers didn't understand the concept of an edge case.
+                    // Once again, we see that our previous developers didn't
+                    // understand the concept of an edge case.
                     Color c = input.getColor(x, y);
                     Color grey = grayScale.getColor(x, y);
                     return new Color(grey.getRed(), c.getGreen(), c.getBlue());

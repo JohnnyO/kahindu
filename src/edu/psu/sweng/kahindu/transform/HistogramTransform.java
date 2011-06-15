@@ -2,6 +2,7 @@ package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
 
+import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
 public abstract class HistogramTransform implements Transformer<KahinduImage> {
@@ -14,25 +15,17 @@ public abstract class HistogramTransform implements Transformer<KahinduImage> {
 		return new LookupImage(input, this.getLookupTable(input));
 	}
 	
-	private class LookupImage implements KahinduImage {
+	private class LookupImage extends DefaultImageDecorator {
 		
 		private final KahinduImage source;
 		private final short [] lookupTable; 
 
 		public LookupImage(KahinduImage input, short[] lut) {
+		    super(input);
 			this.source = input;
 			this.lookupTable = lut;
 		}
 
-		@Override
-		public int getWidth() {
-			return source.getWidth();
-		}
-
-		@Override
-		public int getHeight() {
-			return source.getHeight();
-		}
 
 		@Override
 		public Color getColor(int x, int y) {

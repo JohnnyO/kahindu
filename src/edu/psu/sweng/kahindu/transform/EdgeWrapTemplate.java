@@ -10,15 +10,14 @@ import edu.psu.sweng.kahindu.image.KahinduImage;
  * @author John
  *
  */
-abstract class EdgeWrapTemplate implements KahinduImage {
+ class EdgeWrapTemplate  {
+    
+    private final KahinduImage source;
 
-	@Override
-	public abstract int getWidth();
+    EdgeWrapTemplate(KahinduImage source) {
+        this.source = source;
+    }
 
-	@Override
-	public abstract int getHeight();
-
-	public abstract Color getColor(int x, int y);
 
 	/**
 	 * Our wrapping strategy in Y (height)
@@ -26,7 +25,7 @@ abstract class EdgeWrapTemplate implements KahinduImage {
 	 * @return
 	 */
 	public int cy(int y) {
-		int height = this.getHeight();
+		int height = source.getHeight();
 		if (y > height - 1)
 			return y - height + 1;
 		if (y < 0)
@@ -41,7 +40,7 @@ abstract class EdgeWrapTemplate implements KahinduImage {
 	 */
 
 	public int cx(int x) {
-		int width = this.getWidth();
+		int width = source.getWidth();
 		if (x > width - 1)
 			return x - width + 1;
 		if (x < 0)

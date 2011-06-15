@@ -2,6 +2,7 @@ package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
 
+import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 /**
  * Generates a linear transformation of an image.  A linear transformation is a transformation that converts each pixel
@@ -22,24 +23,16 @@ public abstract class LinearTransformation implements Transformer<KahinduImage> 
 
 	}
 
-	private class LinearTransformedImage implements KahinduImage {
+	private class LinearTransformedImage extends DefaultImageDecorator {
 
 		private final KahinduImage source;
 
 		public LinearTransformedImage(final KahinduImage source) {
+		    super(source);
 			assert (source != null);
 			this.source = source;
 		}
 
-		@Override
-		public int getWidth() {
-			return source.getWidth();
-		}
-
-		@Override
-		public int getHeight() {
-			return source.getHeight();
-		}
 
 		@Override
 		public Color getColor(int x, int y) {

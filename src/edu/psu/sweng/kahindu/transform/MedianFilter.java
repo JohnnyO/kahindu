@@ -3,6 +3,7 @@ package edu.psu.sweng.kahindu.transform;
 import java.awt.Color;
 import java.util.Arrays;
 
+import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.matrix.Matrix;
 
@@ -144,24 +145,19 @@ public class MedianFilter implements Transformer<KahinduImage> {
 		return new MedianFilteredImage(input, shape.getKernel(size));
 	}
 
-	private class MedianFilteredImage extends EdgeWrapTemplate {
+	private class MedianFilteredImage extends DefaultImageDecorator {
 		private final Matrix kernel;
 		private final KahinduImage source;
+        private EdgeWrapTemplate template;
 
 		public MedianFilteredImage(KahinduImage source, Matrix kernel) {
+		    super(source);
 			this.source = source;
 			this.kernel = kernel;
+			this.template = new EdgeWrapTemplate(source);
 		}
 
-		@Override
-		public int getWidth() {
-			return source.getWidth();
-		}
 
-		@Override
-		public int getHeight() {
-			return source.getHeight();
-		}
 
 		@Override
 		public Color getColor(int x, int y) {
@@ -185,7 +181,7 @@ public class MedianFilter implements Transformer<KahinduImage> {
 			for (int v = -vc; v <= vc; v++)
 				for (int u = -uc; u <= uc; u++)
 					if (kernel.getValue(u + uc, v + vc) != 0) {
-						Color c = source.getColor(cx(x - u), cy(y - v));
+						Color c = source.getColor(template.cx(x - u), template.cy(y - v));
 						window[0][loc] = c.getRed();
 						window[1][loc] = c.getGreen();
 						window[2][loc] = c.getBlue();

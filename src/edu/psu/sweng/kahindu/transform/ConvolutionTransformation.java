@@ -2,6 +2,7 @@ package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
 
+import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.matrix.Matrix;
 
@@ -41,25 +42,19 @@ public class ConvolutionTransformation implements Transformer<KahinduImage> {
 	 * @author John
 	 *
 	 */
-	class ConvolutedImage extends EdgeWrapTemplate {
+	class ConvolutedImage extends DefaultImageDecorator {
 
 		private final Matrix kernel;
-		final KahinduImage source;
+		private final KahinduImage source;
+		private final EdgeWrapTemplate template;
 
 		public ConvolutedImage(KahinduImage source, Matrix kernel) {
+		    super(source);
 			this.kernel = kernel;
 			this.source = source;
+			this.template = new EdgeWrapTemplate(source);
 		}
 
-		@Override
-		public int getWidth() {
-			return source.getWidth();
-		}
-
-		@Override
-		public int getHeight() {
-			return source.getHeight();
-		}
 
 		@Override
 		public Color getColor(int x, int y) {
@@ -78,13 +73,13 @@ public class ConvolutionTransformation implements Transformer<KahinduImage> {
 			double blue = 0;
 			for (int v = -vc; v <= vc; v++)
 				for (int u = -uc; u <= uc; u++) {
-					Color color = source.getColor(cx(x - u), cy(y - v));
+					Color color = source.getColor(template.cx(x - u), template.cy(y - v));
 					float value = kernel.getValue(u + uc, v + vc);
 					red += color.getRed() * value;
 					green += color.getGreen() * value;
 					blue += color.getBlue() * value;
 				}
-			return new Color((short) bound(red), (short) bound(green), (short) bound(blue));
+			return new Color((short) template.bound(red), (short) template.bound(green), (short) template.bound(blue));
 		}
 
 	}
