@@ -24,6 +24,6 @@ public class JPGReaderTest
     @Test
     public void testImageReader()
     {
-        assertNull("JPGReaderTest failed to load JPG Image", image);
+        assertNotNull("JPGReaderTest failed to load JPG Image", image);
     }
 }

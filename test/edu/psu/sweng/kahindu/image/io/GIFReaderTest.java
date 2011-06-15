@@ -24,6 +24,6 @@ public class GIFReaderTest
     @Test
     public void testImageReader()
     {
-        assertNull("GIFReaderTest failed to load GIF Image", image);
+        assertNotNull("GIFReaderTest failed to load GIF Image", image);
     }
 }

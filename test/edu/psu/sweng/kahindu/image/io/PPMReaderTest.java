@@ -1,7 +1,7 @@
 package edu.psu.sweng.kahindu.image.io;
 
 
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 
@@ -24,6 +24,6 @@ public class PPMReaderTest
     @Test
     public void testImageReader()
     {
-        assertNull("PPMReaderTest failed to load PPM Image", image);
+        assertNotNull("PPMReaderTest failed to load PPM Image", image);
     }
 }

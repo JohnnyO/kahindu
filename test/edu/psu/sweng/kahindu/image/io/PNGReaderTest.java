@@ -24,6 +24,6 @@ public class PNGReaderTest
     @Test
     public void testImageReader()
     {
-        assertNull("PNGReaderTest failed to load PNG Image", image);
+        assertNotNull("PNGReaderTest failed to load PNG Image", image);
     }
 }
