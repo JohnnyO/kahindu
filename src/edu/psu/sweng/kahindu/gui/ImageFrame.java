@@ -194,7 +194,7 @@ public class ImageFrame extends JFrame {
         saveBuilder.add("Save GIF", new DefaultImageWriter("gif"));
         saveBuilder.add("Save JPG", new DefaultImageWriter("jpg"));
         saveBuilder.add("Save PNG", new DefaultImageWriter("png"));
-        saveBuilder.add("Save PPM", new DefaultImageWriter("PNM"));
+        saveBuilder.add("Save PPM", new AdvancedImageWriter("PNM"));
 
         file.addItem(openBuilder);
         file.addItem(saveBuilder);
