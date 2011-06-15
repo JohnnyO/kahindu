@@ -11,7 +11,8 @@ import edu.psu.sweng.kahindu.image.io.GIFReader;
 import edu.psu.sweng.kahindu.image.io.ImageReader;
 import gui.TopFrame;
 
-public class LowPassFilterTest  {
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
+;public class LowPassFilterTest  {
 	private TopFrame topFrame;
 	private KahinduImage kahinduImage;
 
@@ -28,7 +29,7 @@ public class LowPassFilterTest  {
 	public void testAverage() {
 		topFrame.average();
 
-		Transformer<KahinduImage> t = new LowPassFilter(1);
+		Transformer<KahinduImage> t = new ConvolutionTransformation(LOW_PASS_AVERAGE);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 
@@ -36,7 +37,7 @@ public class LowPassFilterTest  {
 	public void testLP1() {
 		topFrame.lp1();
 
-		Transformer<KahinduImage> t = new LowPassFilter(2);
+		Transformer<KahinduImage> t = new ConvolutionTransformation(LOW_PASS_ONE);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
@@ -44,7 +45,7 @@ public class LowPassFilterTest  {
 	public void testLP2() {
 		topFrame.lp2();
 
-		Transformer<KahinduImage> t = new LowPassFilter(4);
+		Transformer<KahinduImage> t = new ConvolutionTransformation(LOW_PASS_TWO);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
@@ -52,7 +53,7 @@ public class LowPassFilterTest  {
 	public void testLP3() {
 		topFrame.lp3();
 
-		Transformer<KahinduImage> t = new LowPassFilter(12);
+		Transformer<KahinduImage> t = new ConvolutionTransformation(LOW_PASS_THREE);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	

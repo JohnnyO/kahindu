@@ -1,6 +1,7 @@
 package edu.psu.sweng.kahindu.gui;
 
 import java.io.File;
+
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -14,11 +15,10 @@ import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageWriter;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
+import edu.psu.sweng.kahindu.transform.ConvolutionTransformation;
 import edu.psu.sweng.kahindu.transform.ExponentialNonAdaptiveHistogram;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
-import edu.psu.sweng.kahindu.transform.HighPassFilter;
 import edu.psu.sweng.kahindu.transform.LegacyTransform;
-import edu.psu.sweng.kahindu.transform.LowPassFilter;
 import edu.psu.sweng.kahindu.transform.MedianFilter;
 import edu.psu.sweng.kahindu.transform.NegateTransformer;
 import edu.psu.sweng.kahindu.transform.PowerTransformer;
@@ -26,6 +26,9 @@ import edu.psu.sweng.kahindu.transform.RaleighNonAdaptiveHistogram;
 import edu.psu.sweng.kahindu.transform.SaltAndPepperTransformation;
 import edu.psu.sweng.kahindu.transform.UniformNonAdaptiveHistogram;
 import gui.NumImage;
+
+
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*;
 
 public class ImageFrame extends JFrame {
 	private static final long serialVersionUID = 3848669250991405715L;
@@ -64,10 +67,10 @@ public class ImageFrame extends JFrame {
 		JMenuBuilder builder = new JMenuBuilder("Spatial", component);
 
 		JMenuBuilder lowPassBuilder = new JMenuBuilder("Low-Pass", component);
-		lowPassBuilder.add("Average", new LowPassFilter(1));
-		lowPassBuilder.add("Low-Pass 1", new LowPassFilter(2));
-		lowPassBuilder.add("Low-Pass 2", new LowPassFilter(4));
-		lowPassBuilder.add("Low-Pass 3", new LowPassFilter(12));
+		lowPassBuilder.add("Average", new ConvolutionTransformation(LOW_PASS_AVERAGE));
+		lowPassBuilder.add("Low-Pass 1", new ConvolutionTransformation(LOW_PASS_ONE));
+		lowPassBuilder.add("Low-Pass 2", new ConvolutionTransformation(LOW_PASS_TWO));
+		lowPassBuilder.add("Low-Pass 3", new ConvolutionTransformation(LOW_PASS_THREE));
 
 		JMenuBuilder medianBuilder = new JMenuBuilder("Median", component);
 		medianBuilder.add("Cross   (3x3)", new MedianFilter(3, MedianFilter.CROSS));
@@ -83,12 +86,12 @@ public class ImageFrame extends JFrame {
 		medianBuilder.add("Salt & Pepper (4000)", new SaltAndPepperTransformation(4000));
 		
 		JMenuBuilder highPassBuilder = new JMenuBuilder("High-Pass", component);
-		highPassBuilder.add("High Pass 1", new HighPassFilter(1));
-		highPassBuilder.add("High Pass 2", new HighPassFilter(2));
-		highPassBuilder.add("High Pass 3", new HighPassFilter(3));
-		highPassBuilder.add("High Pass 4", new HighPassFilter(4));
-		highPassBuilder.add("High Pass 5", new HighPassFilter(5));
-		highPassBuilder.add("Shadow Mask (hp6)", new HighPassFilter(6));
+		highPassBuilder.add("High Pass 1", new ConvolutionTransformation(HIGH_PASS_ONE));
+		highPassBuilder.add("High Pass 2", new ConvolutionTransformation(HIGH_PASS_TWO));
+		highPassBuilder.add("High Pass 3", new ConvolutionTransformation(HIGH_PASS_THREE));
+		highPassBuilder.add("High Pass 4",new ConvolutionTransformation(HIGH_PASS_FOUR));
+		highPassBuilder.add("High Pass 5", new ConvolutionTransformation(HIGH_PASS_FIVE));
+		highPassBuilder.add("Shadow Mask (hp6)",new ConvolutionTransformation(SHADOW_MASK));
 		
 
 		

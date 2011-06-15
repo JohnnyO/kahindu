@@ -11,7 +11,14 @@ import edu.psu.sweng.kahindu.matrix.Matrix;
  * @author John
  *
  */
-public abstract class ConvolutionTransformation implements Transformer<KahinduImage> {
+public class ConvolutionTransformation implements Transformer<KahinduImage> {
+    
+    private final Matrix kernel;
+
+
+    public ConvolutionTransformation(Matrix kernel) {
+        this.kernel = kernel;
+    }
 	
 	@Override
 	public KahinduImage transform(KahinduImage input) {
@@ -24,7 +31,9 @@ public abstract class ConvolutionTransformation implements Transformer<KahinduIm
 	 * by centering the matrix on the pixel, then summing the values of the neighboring pixels times the matrix values.
 	 * @return the Matrix to be used in the convolution
 	 */
-	public abstract Matrix getKernel();
+	public  Matrix getKernel() {
+	    return kernel;
+	}
 
 	
 	/**

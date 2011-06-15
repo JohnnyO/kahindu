@@ -59,9 +59,10 @@ public class Matrix {
 		return sum;
 	}
 
-	public void normalize() {
+	public Matrix normalize() {
 		float sum = this.sum();
 		this.scale((float) (1 / sum));
+		return this;
 	}
 
 }
