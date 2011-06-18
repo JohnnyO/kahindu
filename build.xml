@@ -1,33 +1,46 @@
 <project name="Kahindu" default="compile" basedir=".">
-    <description>
+	<description>
         Kahindu Image Processing System
     </description>
 
-    <property name="src.dir" location="src" />
-    <property name="build.dir" location="bin" />
+	<property name="src.dir" location="src" />
+	<property name="build.dir" location="bin" />
 
 
-    <target name="prepare">
-        <mkdir dir="${build.dir}" />
-    </target>
+	<path id="classpath">
+		<fileset dir="lib" includes="**/*.jar" />
+	</path>
 
-    <target name="compile" depends="prepare" description="Compiles all source files">
-    	<!-- To see errors regarding the lack of generics, increase the source value to 1.5 -->
-        <javac destdir="${build.dir}" source="1.5">
-            <src path="${src.dir}" />
-        </javac>
-    </target>
 
-    <target name="clean" description="removes all generated files">
-        <delete dir="${build.dir}" />
-    </target>
+	<target name="prepare">
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<target name="compile" depends="prepare" description="Compiles all source files">
+		<!-- To see errors regarding the lack of generics, increase the source value to 1.5 -->
+		<javac destdir="${build.dir}" source="1.3" srcdir="${src.dir}" nowarn="true">
+			<exclude name="edu/psu/**/*.java"/>
+		</javac>
+
+
+		<!-- We compile the new code more strictly, and we reference the old code for our legacy transformer
+		     as well as our tests -->
+		<javac destdir="${build.dir}" source="1.5" srcdir="${src.dir}/edu" classpathref="classpath">
+		</javac>
 	
+
+	</target>
+
+	<target name="clean" description="removes all generated files">
+		<delete dir="${build.dir}" />
+	</target>
+
 	<target name="run" depends="compile">
 		<java classname="Main" classpath="${build.dir}" />
-		
+
 	</target>
-    
-    
-    
-    
+
+
+
+
 </project>
