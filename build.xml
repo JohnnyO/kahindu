@@ -9,6 +9,8 @@
 
 	<path id="classpath">
 		<fileset dir="lib" includes="**/*.jar" />
+		<fileset dir="${build.dir}" includes="**/*.*" />
+
 	</path>
 
 
@@ -34,7 +36,13 @@
 	</target>
 
 	<target name="run" depends="compile">
-		<java classname="Main" classpath="${build.dir}" />
+		<java fork="true" classname="edu.psu.sweng.kahindu.Main">
+	         <classpath>
+	           <path location="${build.dir}"/>
+	           <path refid="classpath" />
+	         </classpath>
+
+		</java>
 
 	</target>
 
