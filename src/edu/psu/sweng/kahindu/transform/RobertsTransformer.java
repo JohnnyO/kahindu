@@ -5,7 +5,7 @@ import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
-public class RobertsTransform implements Transformer<KahinduImage> {
+public class RobertsTransformer implements Transformer<KahinduImage> {
 
     @Override
     public KahinduImage transform(final KahinduImage input) {

@@ -21,7 +21,7 @@ class idx3d extends Applet
 {
 	// Copyright information
 	public String info=new String("idx3d Java 3d ENGINE");
-	public String copyright=new String("©1998 by Peter Walser");
+	public String copyright=new String("1998 by Peter Walser");
 	public String version=new String("Version 2.0 BETA");
 	public String build=new String("06.10.1998");
 	public String sysinfo;

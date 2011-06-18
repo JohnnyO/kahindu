@@ -15,7 +15,7 @@ import edu.psu.sweng.kahindu.matrix.Matrix;
  * 
  */
 
-public class MedianFilter implements Transformer<KahinduImage> {
+public class MedianFilterTransformer implements Transformer<KahinduImage> {
 
 	private interface Shape {
 		Matrix getKernel(int size);
@@ -135,7 +135,7 @@ public class MedianFilter implements Transformer<KahinduImage> {
 	private int size;
 	private Shape shape;
 
-	public MedianFilter(int size, Shape shape) {
+	public MedianFilterTransformer(int size, Shape shape) {
 		this.shape = shape;
 		this.size = size;
 	}

@@ -4,22 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.transform.HistogramTransform.Histogram;
 
-public class ExponentialNonAdaptiveHistogram extends HistogramTransform implements ParameterizedTransformer {
+/**
+ * Implements a Raleigh Non Adaptive Historgram Transformation
+ * @author John
+ *
+ */
+public class RNAHTransformer extends HistogramTransformer implements ParameterizedTransformer {
 
 	public static final String KEY = "Alpha";
 	private static final double DEFAULT_ALPHA = 4.0;
 
 	private double alpha;
 
-	public ExponentialNonAdaptiveHistogram() {
+	public RNAHTransformer() {
 		this.alpha = DEFAULT_ALPHA;
 	}
 
 	@Override
 	public void setParameter(String key, double value) {
-		System.out.println(key + "  " + value);
 		if (KEY.equals(key))
 			this.alpha = value;
 		else
@@ -39,8 +42,9 @@ public class ExponentialNonAdaptiveHistogram extends HistogramTransform implemen
 		Histogram histogram = new Histogram(input);
 		short lut[] = new short[256];
 		double h[] = histogram.getAverageCMF();
+
 		for (short i = 0; i < lut.length; i++) {
-			lut[i] = (short) (255 * (-Math.log(1.0 - h[i]) / alpha));
+			lut[i] = (short) (255 * Math.sqrt(2 * alpha * alpha * Math.log(1 / (1.0 - h[i]))));
 			lut[i] = (short) Math.min(lut[i], 255);
 			lut[i] = (short) Math.max(lut[i], 0);
 		}

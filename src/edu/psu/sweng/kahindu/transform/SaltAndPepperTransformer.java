@@ -13,13 +13,13 @@ import edu.psu.sweng.kahindu.image.RawImageAdapter;
  * @author John
  * 
  */
-public class SaltAndPepperTransformation implements Transformer<KahinduImage> {
+public class SaltAndPepperTransformer implements Transformer<KahinduImage> {
 
 	private final int count;
 	private final Random random = new Random(); // each new instance gets its
 												// own seed
 
-	public SaltAndPepperTransformation(int count) {
+	public SaltAndPepperTransformer(int count) {
 		this.count = count;
 	}
 

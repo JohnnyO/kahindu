@@ -33,7 +33,7 @@ public class HighPassFilterTest {
 	public void testHighPassOne() {
 		topFrame.hp1();
 		
-		Transformer<KahinduImage> t = new ConvolutionTransformation(HIGH_PASS_ONE);
+		Transformer<KahinduImage> t = new ConvolutionTransformer(HIGH_PASS_ONE);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
@@ -41,7 +41,7 @@ public class HighPassFilterTest {
 	public void testHighPassTwo() {
 		topFrame.hp2();
 		
-		Transformer<KahinduImage> t =new ConvolutionTransformation(HIGH_PASS_TWO);
+		Transformer<KahinduImage> t =new ConvolutionTransformer(HIGH_PASS_TWO);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
@@ -49,7 +49,7 @@ public class HighPassFilterTest {
 	public void testHighPassThree() {
 		topFrame.hp3();
 		
-		Transformer<KahinduImage> t = new ConvolutionTransformation(HIGH_PASS_THREE);
+		Transformer<KahinduImage> t = new ConvolutionTransformer(HIGH_PASS_THREE);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
@@ -57,7 +57,7 @@ public class HighPassFilterTest {
 	public void testHighPassFour() {
 		topFrame.hp4();
 		
-		Transformer<KahinduImage> t =new ConvolutionTransformation(HIGH_PASS_FOUR);
+		Transformer<KahinduImage> t =new ConvolutionTransformer(HIGH_PASS_FOUR);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
@@ -65,7 +65,7 @@ public class HighPassFilterTest {
 	public void testHighPassFive() {
 		topFrame.hp5();
 		
-		Transformer<KahinduImage> t = new ConvolutionTransformation(HIGH_PASS_FIVE);
+		Transformer<KahinduImage> t = new ConvolutionTransformer(HIGH_PASS_FIVE);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	

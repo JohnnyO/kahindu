@@ -199,7 +199,7 @@ public static void image3D(Image img,float r[][]) {
 		gx.setColor(new Color(0,255,0));
 		gx.drawString("idx3d II.beta DEMO APPLET",10,20);
 		gx.drawLine(10,26,160,26);
-		gx.drawString("©1998 by Peter Walser",10,42);
+		gx.drawString("1998 by Peter Walser",10,42);
 		gx.drawString("Visit my JavaPage:",10,56);
 		gx.drawString("www2.active.ch/~proxima/java",10,72);
 		gx.drawString("Please wait while initializing...",10,92);

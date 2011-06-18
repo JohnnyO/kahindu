@@ -29,7 +29,7 @@ public class EdgeTestCase {
     public void testRobert2() {
         topFrame.roberts2();
         
-        Transformer<KahinduImage> t = new RobertsTransform();
+        Transformer<KahinduImage> t = new RobertsTransformer();
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 
     }
@@ -39,7 +39,7 @@ public class EdgeTestCase {
     public void testMedian1x2() {
         topFrame.median1x2();
         
-        Transformer<KahinduImage> t = new MedianFilter(3, MedianFilter.HORIZONTAL_LINE);
+        Transformer<KahinduImage> t = new MedianFilterTransformer(3, MedianFilterTransformer.HORIZONTAL_LINE);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 
     }
@@ -48,7 +48,7 @@ public class EdgeTestCase {
     public void testMedian2x1() {
         topFrame.median2x1();
         
-        Transformer<KahinduImage> t = new MedianFilter(3, MedianFilter.VERTICAL_LINE);
+        Transformer<KahinduImage> t = new MedianFilterTransformer(3, MedianFilterTransformer.VERTICAL_LINE);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 
     }
