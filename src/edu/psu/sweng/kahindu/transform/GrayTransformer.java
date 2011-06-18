@@ -2,24 +2,26 @@ package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
 
+import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
+import edu.psu.sweng.kahindu.image.KahinduImage;
+
 /**
  * Converts a color image to its grayscale representation.
+ * 
  * @author John
- *
+ * 
  */
-public class GrayTransformer extends LinearTransformer {
+public class GrayTransformer implements Transformer<KahinduImage> {
 
-
-	
 	@Override
-	public Color transform(Color input) {
-		int red = input.getRed();
-		int green = input.getGreen();
-		int blue = input.getBlue();
-		int average = (red + green + blue) / 3;
-		return new Color(average, average, average);
-
+	public KahinduImage transform(final KahinduImage input) {
+		return new DefaultImageDecorator(input) {
+			@Override
+			public Color getColor(int x, int y) {
+				Color c = input.getColor(x, y);
+				int average = (c.getRed() + c.getGreen() + c.getBlue()) / 3;
+				return new Color(average, average, average);
+			}
+		};
 	}
-
-	
 }

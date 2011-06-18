@@ -2,13 +2,18 @@ package edu.psu.sweng.kahindu.transform;
 
 import java.awt.Color;
 
+import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
+import edu.psu.sweng.kahindu.image.KahinduImage;
+
+
+
 /**
  * Adds a fixed offset to each of the component colors in an image.
  * 
  * @author John
  * 
  */
-public class AdditiveTransformer extends LinearTransformer {
+public class AdditiveTransformer implements Transformer<KahinduImage> {
 	private final int offset;
 
 	/**
@@ -29,11 +34,17 @@ public class AdditiveTransformer extends LinearTransformer {
 		return value;
 	}
 
-	public Color transform(Color input) {
-		int red = bound(offset + input.getRed(), 0, 255);
-		int green = bound(offset + input.getGreen(), 0, 255);
-		int blue = bound(offset + input.getBlue(), 0, 255);
-		return new Color(red, green, blue);
+	@Override
+	public KahinduImage transform(final KahinduImage input) {
+		return new DefaultImageDecorator(input) {
+			public Color getColor(int x, int y) {
+				Color c = input.getColor(x, y);
+				int red = bound(offset + c.getRed(), 0, 255);
+				int green = bound(offset + c.getGreen(), 0, 255);
+				int blue = bound(offset + c.getBlue(), 0, 255);
+				return new Color(red, green, blue);
+			}
+		};
 	}
 
 }
