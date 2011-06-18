@@ -1,7 +1,7 @@
 package edu.psu.sweng.kahindu.transform;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.io.GIFReader;
+import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
 import edu.psu.sweng.kahindu.image.io.ImageReader;
 import edu.psu.sweng.kahindu.matrix.MatrixDictionary;
 import gui.TopFrame;
@@ -9,7 +9,6 @@ import gui.TopFrame;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +21,7 @@ public class MorphTest {
         topFrame = new TopFrame("");
         topFrame.openGif("gifs/baboon.gif");
 
-        ImageReader reader = new GIFReader();
+        ImageReader reader = new DefaultImageReader();
         kahinduImage = reader.read(new File("gifs/baboon.gif"));
 
         topFrame.gray();

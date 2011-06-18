@@ -1,7 +1,7 @@
 package edu.psu.sweng.kahindu.transform;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.io.GIFReader;
+import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
 import edu.psu.sweng.kahindu.image.io.ImageReader;
 import gui.TopFrame;
 
@@ -22,7 +22,7 @@ public class LegacyTransformTest {
 		topFrame = new TopFrame("");
 		topFrame.openGif("gifs/baboon.gif");
 
-		ImageReader reader = new GIFReader();
+		ImageReader reader = new DefaultImageReader();
 		kahinduImage = reader.read(new File("gifs/baboon.gif"));
 	}
 	

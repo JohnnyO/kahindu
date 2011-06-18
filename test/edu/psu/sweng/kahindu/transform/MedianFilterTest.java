@@ -1,6 +1,11 @@
 package edu.psu.sweng.kahindu.transform;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import edu.psu.sweng.kahindu.image.KahinduImage;
+import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
+import edu.psu.sweng.kahindu.image.io.ImageReader;
+import gui.SpatialFilterFrame;
+import gui.TopFrame;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,12 +13,6 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.io.GIFReader;
-import edu.psu.sweng.kahindu.image.io.ImageReader;
-import gui.SpatialFilterFrame;
-import gui.TopFrame;
 
 public class MedianFilterTest {
 
@@ -25,7 +24,7 @@ public class MedianFilterTest {
 		topFrame = new TopFrame("");
 		topFrame.openGif("gifs/baboon.gif");
 
-		ImageReader reader = new GIFReader();
+		ImageReader reader = new DefaultImageReader();
 		kahinduImage = reader.read(new File("gifs/baboon.gif"));
 	}
 	

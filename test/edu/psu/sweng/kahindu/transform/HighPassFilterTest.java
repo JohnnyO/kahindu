@@ -1,18 +1,20 @@
 package edu.psu.sweng.kahindu.transform;
 
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_FIVE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_FOUR;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_ONE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_THREE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_TWO;
+import edu.psu.sweng.kahindu.image.KahinduImage;
+import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
+import edu.psu.sweng.kahindu.image.io.ImageReader;
+import gui.TopFrame;
+
 import java.io.File;
 import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.image.io.GIFReader;
-import edu.psu.sweng.kahindu.image.io.ImageReader;
-import edu.psu.sweng.kahindu.matrix.Matrix;
-import gui.TopFrame;
-
-import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*;
 
 public class HighPassFilterTest {
 	private TopFrame topFrame;
@@ -23,7 +25,7 @@ public class HighPassFilterTest {
 		topFrame = new TopFrame("");
 		topFrame.openGif("gifs/baboon.gif");
 
-		ImageReader reader = new GIFReader();
+		ImageReader reader = new DefaultImageReader();
 		kahinduImage = reader.read(new File("gifs/baboon.gif"));
 	}
 	

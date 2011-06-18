@@ -17,10 +17,4 @@ public class ByteArrayImageReader implements ImageReader{
 	public KahinduImage read(File file) throws IOException {
 		return new ByteArrayImageAdapter(data);
 	}
-
-//	@Override
-//	public void setFile(File file) {
-//		// TODO This is a problem		
-//	}
-
 }
