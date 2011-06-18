@@ -6,10 +6,10 @@ import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.matrix.Matrix;
 
-public class DilateTransform implements Transformer<KahinduImage> {
+public class DilateTransformer implements Transformer<KahinduImage> {
     private final Matrix kernel;
 
-    public DilateTransform(Matrix kernel) {
+    public DilateTransformer(Matrix kernel) {
         this.kernel = kernel;
     }
 

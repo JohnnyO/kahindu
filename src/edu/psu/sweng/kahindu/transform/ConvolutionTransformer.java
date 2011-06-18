@@ -12,12 +12,12 @@ import edu.psu.sweng.kahindu.matrix.Matrix;
  * @author John
  *
  */
-public class ConvolutionTransformation implements Transformer<KahinduImage> {
+public class ConvolutionTransformer implements Transformer<KahinduImage> {
     
     private final Matrix kernel;
 
 
-    public ConvolutionTransformation(Matrix kernel) {
+    public ConvolutionTransformer(Matrix kernel) {
         this.kernel = kernel;
     }
 	

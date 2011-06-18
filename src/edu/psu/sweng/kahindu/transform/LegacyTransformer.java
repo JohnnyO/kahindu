@@ -16,12 +16,12 @@ import gui.TopFrame;
  * @author John
  *
  */
-public class LegacyTransform implements Transformer<KahinduImage> {
+public class LegacyTransformer implements Transformer<KahinduImage> {
 
 	private final TopFrame topFrame = new TopFrame("");
 	private final String methodName;
 
-	public LegacyTransform(String methodName) {
+	public LegacyTransformer(String methodName) {
 		this.methodName = methodName;
 	}
 
@@ -85,7 +85,7 @@ public class LegacyTransform implements Transformer<KahinduImage> {
 
 	private void performTransformation() throws Exception {
 		Method method = topFrame.getClass().getMethod(methodName, (Class[]) null);
-		method.invoke(topFrame, null);
+		method.invoke(topFrame, (Object [])null);
 	}
 
 }

@@ -30,7 +30,7 @@ public class LegacyTransformTest {
 	public void testHighPassOne() {
 		topFrame.hp1();
 		
-		Transformer<KahinduImage> t = new LegacyTransform("hp1");
+		Transformer<KahinduImage> t = new LegacyTransformer("hp1");
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 

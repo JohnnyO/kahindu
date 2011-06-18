@@ -8,7 +8,7 @@ import java.awt.Color;
  * @author John
  * 
  */
-public class AdditiveTransformer extends LinearTransformation {
+public class AdditiveTransformer extends LinearTransformer {
 	private final int offset;
 
 	/**

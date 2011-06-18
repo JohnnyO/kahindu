@@ -8,7 +8,7 @@ import java.awt.Color;
  * @author John
  * 
  */
-public class PowerTransformer extends LinearTransformation {
+public class PowerTransformer extends LinearTransformer {
 
 	private final double power;
 

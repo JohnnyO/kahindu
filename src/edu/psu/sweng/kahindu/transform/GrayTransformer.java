@@ -7,7 +7,7 @@ import java.awt.Color;
  * @author John
  *
  */
-public class GrayTransformer extends LinearTransformation {
+public class GrayTransformer extends LinearTransformer {
 
 
 	

@@ -5,14 +5,19 @@ import java.util.Map;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
-public class RaleighNonAdaptiveHistogram extends HistogramTransform implements ParameterizedTransformer {
+/**
+ * Implements a Raleigh Non Adaptive Historgram Transformation
+ * @author John
+ *
+ */
+public class RNAHTransformer extends HistogramTransformer implements ParameterizedTransformer {
 
 	public static final String KEY = "Alpha";
 	private static final double DEFAULT_ALPHA = 4.0;
 
 	private double alpha;
 
-	public RaleighNonAdaptiveHistogram() {
+	public RNAHTransformer() {
 		this.alpha = DEFAULT_ALPHA;
 	}
 

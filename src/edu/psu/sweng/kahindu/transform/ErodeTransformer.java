@@ -7,11 +7,11 @@ import edu.psu.sweng.kahindu.matrix.Matrix;
 
 import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
 
-public class ErodeTransform implements Transformer<KahinduImage> {
+public class ErodeTransformer implements Transformer<KahinduImage> {
 
     private final Matrix kernel;
 
-    public ErodeTransform(Matrix kernel) {
+    public ErodeTransformer(Matrix kernel) {
         this.kernel = kernel;
     }
 

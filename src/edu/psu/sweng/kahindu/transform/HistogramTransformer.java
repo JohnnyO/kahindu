@@ -5,7 +5,7 @@ import java.awt.Color;
 import edu.psu.sweng.kahindu.image.DefaultImageDecorator;
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
-public abstract class HistogramTransform implements Transformer<KahinduImage> {
+public abstract class HistogramTransformer implements Transformer<KahinduImage> {
 
 	public abstract short[] getLookupTable(KahinduImage input);
 

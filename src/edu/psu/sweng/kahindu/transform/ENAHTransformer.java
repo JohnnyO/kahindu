@@ -4,16 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
-import edu.psu.sweng.kahindu.transform.HistogramTransform.Histogram;
+import edu.psu.sweng.kahindu.transform.HistogramTransformer.Histogram;
 
-public class ExponentialNonAdaptiveHistogram extends HistogramTransform implements ParameterizedTransformer {
+/**
+ * Implements an Exponential Non-Adaptive Histogram Transformation
+ * @author John
+ *
+ */
+public class ENAHTransformer extends HistogramTransformer implements ParameterizedTransformer {
 
 	public static final String KEY = "Alpha";
 	private static final double DEFAULT_ALPHA = 4.0;
 
 	private double alpha;
 
-	public ExponentialNonAdaptiveHistogram() {
+	public ENAHTransformer() {
 		this.alpha = DEFAULT_ALPHA;
 	}
 

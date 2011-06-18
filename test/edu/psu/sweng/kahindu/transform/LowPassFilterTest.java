@@ -29,7 +29,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
 	public void testAverage() {
 		topFrame.average();
 
-		Transformer<KahinduImage> t = new ConvolutionTransformation(LOW_PASS_AVERAGE);
+		Transformer<KahinduImage> t = new ConvolutionTransformer(LOW_PASS_AVERAGE);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 
@@ -37,7 +37,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
 	public void testLP1() {
 		topFrame.lp1();
 
-		Transformer<KahinduImage> t = new ConvolutionTransformation(LOW_PASS_ONE);
+		Transformer<KahinduImage> t = new ConvolutionTransformer(LOW_PASS_ONE);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
@@ -45,7 +45,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
 	public void testLP2() {
 		topFrame.lp2();
 
-		Transformer<KahinduImage> t = new ConvolutionTransformation(LOW_PASS_TWO);
+		Transformer<KahinduImage> t = new ConvolutionTransformer(LOW_PASS_TWO);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
@@ -53,7 +53,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
 	public void testLP3() {
 		topFrame.lp3();
 
-		Transformer<KahinduImage> t = new ConvolutionTransformation(LOW_PASS_THREE);
+		Transformer<KahinduImage> t = new ConvolutionTransformer(LOW_PASS_THREE);
 		TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	}
 	
@@ -61,7 +61,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
 	    public void testMean3() {
 	        topFrame.mean3();
 
-	        Transformer<KahinduImage> t = new ConvolutionTransformation(MEAN3);
+	        Transformer<KahinduImage> t = new ConvolutionTransformer(MEAN3);
 	        TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 	    }
 	   
@@ -69,7 +69,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
        public void testMean9() {
            topFrame.mean9();
 
-           Transformer<KahinduImage> t = new ConvolutionTransformation(MEAN9);
+           Transformer<KahinduImage> t = new ConvolutionTransformer(MEAN9);
            TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
        }
        
@@ -77,7 +77,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
        public void testGuass3() {
            topFrame.gauss3();
 
-           Transformer<KahinduImage> t = new ConvolutionTransformation(GUASSIAN3);
+           Transformer<KahinduImage> t = new ConvolutionTransformer(GUASSIAN3);
            TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
        }
        
@@ -86,7 +86,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
        public void testGuass7() {
            topFrame.gauss7();
 
-           Transformer<KahinduImage> t = new ConvolutionTransformation(GUASSIAN7);
+           Transformer<KahinduImage> t = new ConvolutionTransformer(GUASSIAN7);
            TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
        }
        
@@ -94,7 +94,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
        public void testGuass31() {
            topFrame.gauss31();
 
-           Transformer<KahinduImage> t = new ConvolutionTransformation(GUASSIAN31);
+           Transformer<KahinduImage> t = new ConvolutionTransformer(GUASSIAN31);
            TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
        }
        
@@ -102,7 +102,7 @@ import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*
        public void testGuass15() {
            topFrame.gauss15();
 
-           Transformer<KahinduImage> t = new ConvolutionTransformation(GUASSIAN15);
+           Transformer<KahinduImage> t = new ConvolutionTransformer(GUASSIAN15);
            TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
        }
 

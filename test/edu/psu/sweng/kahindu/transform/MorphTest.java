@@ -4,12 +4,13 @@ import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.image.io.GIFReader;
 import edu.psu.sweng.kahindu.image.io.ImageReader;
 import edu.psu.sweng.kahindu.matrix.MatrixDictionary;
+import edu.psu.sweng.kahindu.transform.TestingUtils;
+
 import gui.TopFrame;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,7 +33,7 @@ public class MorphTest {
     public void testErodeKH() {
         topFrame.erode(TopFrame.kh);
 
-        Transformer<KahinduImage> t = new ErodeTransform(MatrixDictionary.KH);
+        Transformer<KahinduImage> t = new ErodeTransformer(MatrixDictionary.KH);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 
     }
@@ -41,7 +42,7 @@ public class MorphTest {
     public void testErodeKV() {
         topFrame.erode(TopFrame.kv);
 
-        Transformer<KahinduImage> t = new ErodeTransform(MatrixDictionary.KV);
+        Transformer<KahinduImage> t = new ErodeTransformer(MatrixDictionary.KV);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 
     }
@@ -50,7 +51,7 @@ public class MorphTest {
     public void testErodeKSquare() {
         topFrame.erode(TopFrame.kSquare);
 
-        Transformer<KahinduImage> t = new ErodeTransform(MatrixDictionary.KSQUARE);
+        Transformer<KahinduImage> t = new ErodeTransformer(MatrixDictionary.KSQUARE);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
 
     }
@@ -59,7 +60,7 @@ public class MorphTest {
     public void testErodeKCross() {
         topFrame.erode(TopFrame.kCross);
 
-        Transformer<KahinduImage> t = new ErodeTransform(MatrixDictionary.KCROSS);
+        Transformer<KahinduImage> t = new ErodeTransformer(MatrixDictionary.KCROSS);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
 
@@ -67,7 +68,7 @@ public class MorphTest {
     public void testDilateKH() {
         topFrame.dilate(TopFrame.kh);
 
-        Transformer<KahinduImage> t = new DilateTransform(MatrixDictionary.KH);
+        Transformer<KahinduImage> t = new DilateTransformer(MatrixDictionary.KH);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
 
@@ -75,7 +76,7 @@ public class MorphTest {
     public void testDilateKV() {
         topFrame.dilate(TopFrame.kv);
 
-        Transformer<KahinduImage> t = new DilateTransform(MatrixDictionary.KV);
+        Transformer<KahinduImage> t = new DilateTransformer(MatrixDictionary.KV);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
 
@@ -83,7 +84,7 @@ public class MorphTest {
     public void testDilateKSquare() {
         topFrame.dilate(TopFrame.kSquare);
 
-        Transformer<KahinduImage> t = new DilateTransform(MatrixDictionary.KSQUARE);
+        Transformer<KahinduImage> t = new DilateTransformer(MatrixDictionary.KSQUARE);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
 
@@ -91,7 +92,7 @@ public class MorphTest {
     public void testDilateKCross() {
         topFrame.dilate(TopFrame.kCross);
 
-        Transformer<KahinduImage> t = new DilateTransform(MatrixDictionary.KCROSS);
+        Transformer<KahinduImage> t = new DilateTransformer(MatrixDictionary.KCROSS);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
 
@@ -99,7 +100,7 @@ public class MorphTest {
     public void testOpenKH() {
         topFrame.open(TopFrame.kh);
 
-        Transformer<KahinduImage> t = new OpenTransform(MatrixDictionary.KH);
+        Transformer<KahinduImage> t = new OpenTransformer(MatrixDictionary.KH);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
@@ -107,7 +108,7 @@ public class MorphTest {
     public void testOpenKV() {
         topFrame.open(TopFrame.kv);
 
-        Transformer<KahinduImage> t = new OpenTransform(MatrixDictionary.KV);
+        Transformer<KahinduImage> t = new OpenTransformer(MatrixDictionary.KV);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
@@ -115,7 +116,7 @@ public class MorphTest {
     public void testOpenKSquare() {
         topFrame.open(TopFrame.kSquare);
 
-        Transformer<KahinduImage> t = new OpenTransform(MatrixDictionary.KSQUARE);
+        Transformer<KahinduImage> t = new OpenTransformer(MatrixDictionary.KSQUARE);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
@@ -123,7 +124,7 @@ public class MorphTest {
     public void testOpenKCross() {
         topFrame.open(TopFrame.kCross);
 
-        Transformer<KahinduImage> t = new OpenTransform(MatrixDictionary.KCROSS);
+        Transformer<KahinduImage> t = new OpenTransformer(MatrixDictionary.KCROSS);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
@@ -131,7 +132,7 @@ public class MorphTest {
     public void testCloseH() {
         topFrame.close(TopFrame.kh);
 
-        Transformer<KahinduImage> t = new CloseTransform(MatrixDictionary.KH);
+        Transformer<KahinduImage> t = new CloseTransformer(MatrixDictionary.KH);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
@@ -139,7 +140,7 @@ public class MorphTest {
     public void testCloseV() {
         topFrame.close(TopFrame.kv);
 
-        Transformer<KahinduImage> t = new CloseTransform(MatrixDictionary.KV);
+        Transformer<KahinduImage> t = new CloseTransformer(MatrixDictionary.KV);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
@@ -147,7 +148,7 @@ public class MorphTest {
     public void testCloseKSquare() {
         topFrame.close(TopFrame.kSquare);
 
-        Transformer<KahinduImage> t = new CloseTransform(MatrixDictionary.KSQUARE);
+        Transformer<KahinduImage> t = new CloseTransformer(MatrixDictionary.KSQUARE);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
@@ -155,7 +156,7 @@ public class MorphTest {
     public void testCloseKCross() {
         topFrame.close(TopFrame.kCross);
 
-        Transformer<KahinduImage> t = new CloseTransform(MatrixDictionary.KCROSS);
+        Transformer<KahinduImage> t = new CloseTransformer(MatrixDictionary.KCROSS);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
 
@@ -163,56 +164,56 @@ public class MorphTest {
     @Test
     public void testInnerH() {
         topFrame.insideContour(TopFrame.kh);
-        Transformer<KahinduImage> t = new InnerContour(MatrixDictionary.KH);
+        Transformer<KahinduImage> t = new InnerContourTransformer(MatrixDictionary.KH);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
     @Test
     public void testInnerV() {
         topFrame.insideContour(TopFrame.kv);
-        Transformer<KahinduImage> t = new InnerContour(MatrixDictionary.KV);
+        Transformer<KahinduImage> t = new InnerContourTransformer(MatrixDictionary.KV);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
     @Test
     public void testInnerKSquare() {
         topFrame.insideContour(TopFrame.kSquare);
-        Transformer<KahinduImage> t = new InnerContour(MatrixDictionary.KSQUARE);
+        Transformer<KahinduImage> t = new InnerContourTransformer(MatrixDictionary.KSQUARE);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
     @Test
     public void testInnerKCross() {
         topFrame.insideContour(TopFrame.kCross);
-        Transformer<KahinduImage> t = new InnerContour(MatrixDictionary.KCROSS);
+        Transformer<KahinduImage> t = new InnerContourTransformer(MatrixDictionary.KCROSS);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
     @Test
     public void testOuterH() {
         topFrame.outsideContour(TopFrame.kh);
-        Transformer<KahinduImage> t = new OuterContour(MatrixDictionary.KH);
+        Transformer<KahinduImage> t = new OuterContourTransformer(MatrixDictionary.KH);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
     @Test
     public void testOuterV() {
         topFrame.outsideContour(TopFrame.kv);
-        Transformer<KahinduImage> t = new OuterContour(MatrixDictionary.KV);
+        Transformer<KahinduImage> t = new OuterContourTransformer(MatrixDictionary.KV);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
     @Test
     public void testOuterKSquare() {
         topFrame.outsideContour(TopFrame.kSquare);
-        Transformer<KahinduImage> t = new OuterContour(MatrixDictionary.KSQUARE);
+        Transformer<KahinduImage> t = new OuterContourTransformer(MatrixDictionary.KSQUARE);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
 
     @Test
     public void testOuterKCross() {
         topFrame.outsideContour(TopFrame.kCross);
-        Transformer<KahinduImage> t = new OuterContour(MatrixDictionary.KCROSS);
+        Transformer<KahinduImage> t = new OuterContourTransformer(MatrixDictionary.KCROSS);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
 
@@ -220,28 +221,28 @@ public class MorphTest {
     @Test
     public void testMiddleKH() {
         topFrame.middleContour(TopFrame.kh);
-        Transformer<KahinduImage> t = new MiddleContour(MatrixDictionary.KH);
+        Transformer<KahinduImage> t = new MiddleContourTransformer(MatrixDictionary.KH);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
     @Test
     public void testMiddleKV() {
         topFrame.middleContour(TopFrame.kv);
-        Transformer<KahinduImage> t = new MiddleContour(MatrixDictionary.KV);
+        Transformer<KahinduImage> t = new MiddleContourTransformer(MatrixDictionary.KV);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
     @Test
     public void testMiddleKSquare() {
         topFrame.middleContour(TopFrame.kSquare);
-        Transformer<KahinduImage> t = new MiddleContour(MatrixDictionary.KSQUARE);
+        Transformer<KahinduImage> t = new MiddleContourTransformer(MatrixDictionary.KSQUARE);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
     
     @Test
     public void testMiddleKCross() {
         topFrame.middleContour(TopFrame.kCross);
-        Transformer<KahinduImage> t = new MiddleContour(MatrixDictionary.KCROSS);
+        Transformer<KahinduImage> t = new MiddleContourTransformer(MatrixDictionary.KCROSS);
         TestingUtils.compareImages(topFrame, t.transform(kahinduImage));
     }
 

@@ -2,7 +2,7 @@ package edu.psu.sweng.kahindu.transform;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
 
-public class UniformNonAdaptiveHistogram extends HistogramTransform {
+public class UNAHTransformer extends HistogramTransformer {
 
 	@Override
 	public short[] getLookupTable(KahinduImage input) {

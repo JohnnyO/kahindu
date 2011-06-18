@@ -8,7 +8,7 @@ import java.awt.Color;
  * @author John
  * 
  */
-public class NegateTransformer extends LinearTransformation {
+public class NegateTransformer extends LinearTransformer {
 
 	public Color transform(Color input) {
 		int red = 255 - input.getRed();
