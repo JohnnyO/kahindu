@@ -1,29 +1,44 @@
 package edu.psu.sweng.kahindu.gui;
 
-import java.io.File;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.GUASSIAN15;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.GUASSIAN3;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.GUASSIAN31;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.GUASSIAN7;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_FIVE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_FOUR;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_ONE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_THREE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.HIGH_PASS_TWO;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.KCROSS;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.KH;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.KSQUARE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.KV;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.LOW_PASS_AVERAGE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.LOW_PASS_ONE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.LOW_PASS_THREE;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.LOW_PASS_TWO;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.MEAN3;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.MEAN9;
+import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.SHADOW_MASK;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.xml.transform.Transformer;
 
 import edu.psu.sweng.kahindu.image.KahinduImage;
 import edu.psu.sweng.kahindu.image.io.AdvancedImageReader;
 import edu.psu.sweng.kahindu.image.io.AdvancedImageWriter;
-import edu.psu.sweng.kahindu.image.io.ByteArrayImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageReader;
 import edu.psu.sweng.kahindu.image.io.DefaultImageWriter;
-import edu.psu.sweng.kahindu.image.io.GIFReader;
-import edu.psu.sweng.kahindu.matrix.Matrix;
-import edu.psu.sweng.kahindu.matrix.MatrixDictionary;
 import edu.psu.sweng.kahindu.transform.AdditiveTransformer;
 import edu.psu.sweng.kahindu.transform.CloseTransformer;
 import edu.psu.sweng.kahindu.transform.ConvolutionTransformer;
 import edu.psu.sweng.kahindu.transform.DilateTransformer;
-import edu.psu.sweng.kahindu.transform.ErodeTransformer;
 import edu.psu.sweng.kahindu.transform.ENAHTransformer;
+import edu.psu.sweng.kahindu.transform.ErodeTransformer;
 import edu.psu.sweng.kahindu.transform.GrayTransformer;
 import edu.psu.sweng.kahindu.transform.InnerContourTransformer;
 import edu.psu.sweng.kahindu.transform.LegacyTransformer;
@@ -38,8 +53,6 @@ import edu.psu.sweng.kahindu.transform.RobertsTransformer;
 import edu.psu.sweng.kahindu.transform.SaltAndPepperTransformer;
 import edu.psu.sweng.kahindu.transform.UNAHTransformer;
 
-import static edu.psu.sweng.kahindu.matrix.MatrixDictionary.*;
-
 public class ImageFrame extends JFrame {
     private static final long serialVersionUID = 3848669250991405715L;
 
@@ -51,7 +64,7 @@ public class ImageFrame extends JFrame {
         super("Kahindu Refactor - Team 2");
         File defaultImage = new File("gifs/baboon.GIF");
         try {
-            this.image = new GIFReader().read(defaultImage);
+            this.image = new DefaultImageReader().read(defaultImage);
             // this.image = new GIFReader(new File("gifs/baboon.GIF")).read();
         } catch (IOException e) {
             e.printStackTrace();
