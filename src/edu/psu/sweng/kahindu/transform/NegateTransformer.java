@@ -13,13 +13,6 @@ import edu.psu.sweng.kahindu.image.KahinduImage;
  */
 public class NegateTransformer implements Transformer<KahinduImage> {
 
-	public Color transform(Color input) {
-		int red = 255 - input.getRed();
-		int blue = 255 - input.getBlue();
-		int green = 255 - input.getGreen();
-		return new Color(red, green, blue);
-	}
-
 	@Override
 	public KahinduImage transform(final KahinduImage input) {
 		return new DefaultImageDecorator(input) {
